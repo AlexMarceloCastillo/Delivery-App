@@ -3,8 +3,8 @@
 Este proyecto de git contiene el desarrollo completo del frontend de la aplicacion.
 
 ## Tecnologías
-*Angular ( v10.0.7 )
-*Bootstrap ( v4.5.3 )
+* Angular ( v10.0.7 )
+* Bootstrap ( v4.5.3 )
 
 ## Equipo
 * [Alexander Castillo](https://github.com/AlexMarceloCastillo).

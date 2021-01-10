@@ -1,0 +1,24 @@
+<nav id="sidebar" class="bg-light border-right" [ngClass]="{'active': this.toggleStatus.status$ | async}">
+  <div class="sidebar-heading">
+    <button type="button" class="close" aria-label="Close" (click)="onToggle($event)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="list-group list-group-flush">
+    <a class="list-group-item list-group-item-action bg-light" [routerLink]="[ '/home']">Home</a>
+    <a class="list-group-item list-group-item-action bg-light" [routerLink]="[ '/menu']">Menu</a>
+    <a class="list-group-item list-group-item-action bg-light" [routerLink]="[ '/login']">Login</a>
+    <a class="list-group-item list-group-item-action bg-light" [routerLink]="[ '/cart']">Carrito</a>
+    <div class="dropdown">
+      <button class="btn btn-liht dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        user.name
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" [routerLink]="[ '/perfil/id']">Perfil</a>
+        <a class="dropdown-item" href="#">Mis pedidos</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Cerrar Sesión</a>
+      </div>
+    </div>
+  </div>
+</nav>

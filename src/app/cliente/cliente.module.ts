@@ -12,6 +12,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { PerfilComponent } from './auth/perfil/perfil.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { CartComponent } from './pages/cart/cart.component';
     LoginComponent,
     RegisterComponent,
     PerfilComponent,
-    CartComponent
+    CartComponent,
+    SidebarComponent
   ],
   imports: [
     CommonModule,

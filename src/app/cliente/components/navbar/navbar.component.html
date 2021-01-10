@@ -1,1 +1,39 @@
-<p>navbar works!</p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+  <div id="mobile">
+    <button class="navbar-toggler" type="button" (click)="onToggle($event)">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" [routerLink]="[ '/home' ]">The Good Taste</a>
+  </div>
+  <div class="collapse navbar-collapse" id="desktop">
+    <div class="container">
+        <a class="navbar-brand" [routerLink]="[ '/home' ]">The Good Taste</a>
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="[ '/home' ]" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="[ '/menu' ] " routerLinkActive="active">Menu</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="[ '/login' ] " routerLinkActive="active">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="[ '/cart' ] " routerLinkActive="active"><i class="bi bi-cart"></i></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="perfilDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="https://lh3.googleusercontent.com/proxy/cyIeg7pe0TcQmSQYrCPXe0XOXoZ2kmjIn3ZowPkgJjIdbv6AuxBeATq-Bx0EqhkpTyXJDeh40Z5abY62vPIHui_qmABJEwAqBixWozZQggy129A21ffglqG6ww"  alt="user profile picture" width="50" height="50" class="rounded-circle" loading="lazy">
+                </a>
+                <div class="dropdown-menu" aria-labelledby="perfilDropdown">
+                    <a class="dropdown-item" [routerLink]="[ '/perfil/id' ] " routerLinkActive="active">Perifl</a>
+                    <!-- <a class="dropdown-item" [routerLink]="[ '/perfil/', userId ]">Perfil</a> -->
+                    <a class="dropdown-item">Mis pedidos</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item">Cerrar Sesión</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+  </div>
+</nav>
