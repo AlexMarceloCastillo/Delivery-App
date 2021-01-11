@@ -1,0 +1,60 @@
+div.container {
+  // max-height: 100vh !important;
+  margin: 30% auto;
+
+  div.col {
+    margin: auto;
+  }
+
+  div#login-wrap {
+    border: 1px solid rgba(0, 0, 0, 0.01);
+    background-image: url('../../../../assets/img/web/hexagon.jpg');
+    background-position: center;
+    background-size: 100%;
+
+    div.card {
+      margin: 5% !important;
+
+      p.error{
+        color: #dc3545;//danger color from Bootstrap
+        padding: 0px 5px;
+        margin: none;
+      }
+
+      div.card-body  button#btn-google{
+        background-color: #DB4437;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  div.container {
+    margin: 20% auto;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  div.container {
+    margin: 15% auto;
+
+    div#login-wrap {
+      background-size: 75%;
+    }
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  div.container {
+    margin: 8% auto;
+    div#login-wrap {
+      background-size: 60%;
+
+      div.card {
+        margin: 10% !important;
+      }
+    }
+  }
+}

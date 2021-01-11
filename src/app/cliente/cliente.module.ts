@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { ClienteRoutingModule } from './cliente-routing.module';
 import { ClienteComponent } from './cliente.component';
+
+import { ReactiveFormsModule } from "@angular/forms";
+
 /* Pages */
 import { HomeComponent } from "./pages/home/home.component";
 import { MenuComponent } from './pages/menu/menu.component';
@@ -30,7 +33,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
   ],
   imports: [
     CommonModule,
-    ClienteRoutingModule
+    ClienteRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class ClienteModule { }

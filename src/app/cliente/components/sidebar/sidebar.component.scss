@@ -16,7 +16,7 @@ nav#sidebar {
   div.list-group > div.dropdown {
     display: flex;
     justify-items: center;
-    justify-content: start;
+    justify-content: flex-start;
 
     button {
       border: none;
