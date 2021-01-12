@@ -17,7 +17,8 @@
                         <i class="bi bi-person-fill"></i>
                       </span>
                     </div>
-                    <input type="email" class="form-control" placeholder="ejemplo@email.com" name="email" formControlName="email">
+                    <input type="email" class="form-control" placeholder="ejemplo@email.com" name="email"
+                      formControlName="email">
                   </div>
                 </div>
                 <!-- respuesta de validacion del email -->
@@ -36,22 +37,28 @@
                 <div class="form-group col-12">
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon1">
-                        <i class="bi bi-eye-fill"></i>
+                      <span class="input-group-text">
+                        <i class="bi bi-lock-fill"></i>
                       </span>
                     </div>
-                    <input type="password" class="form-control" placeholder="contraseña" name="pwd"
-                      formControlName="pwd">
+                    <input class="form-control" placeholder="contraseña" name="pwd" formControlName="pwd" [type]="hide? 'password':'text'">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" type="button" (click)="toggleType($event)">
+                        <!-- <i [ngClass]="{'bi bi-eye-slash-fill': false, 'bi bi-eye-fill': true}"></i> -->
+                        <i [ngClass]="{'bi bi-eye-slash-fill': (hide == true),'bi bi-eye-fill':(hide == false)}"></i>
+                      </button>
+                    </div>
                   </div>
-                  <!-- respuesta de validacion del pwd -->
+                </div>
+                <!-- respuesta de validacion del pwd -->
                 <div class="form-group col-12 mb-0" *ngIf="pwd.errors && pwd.touched">
                   <p *ngIf="pwd.hasError('required')" [ngClass]="{'error': pwd.hasError('required')}">
                     Es un campo requerido
                   </p>
                 </div>
                 <!-- / respuesta de validacion del pwd / -->
-                </div>
               </div>
+
               <div class="form-row">
                 <div class="form-group col-12">
                   <div class="form-check">
@@ -64,18 +71,16 @@
                 </div>
               </div>
               <div class="form-row">
-                <div class="form-group col-12">
-                  <button class="btn btn-primary btn-block" [disabled]="loginForm.invalid">Iniciar Sesión</button>
+                <div class="form-group col-12" id="btn-submit">
+                  <button class="btn btn-primary" [disabled]="loginForm.invalid">Iniciar Sesión</button>
+                  <button type="button" class="btn btn-link">¿Olvido su contraseña?</button>
                 </div>
               </div>
             </form>
           </div>
-          <div class="dropdown-divider"></div>
-          <div class="card-body">
-            <button type="button" class="btn btn-secondary btn-block" id="btn-google">Inicia Sesión con Google</button>
-          </div>
           <div class="card-footer text-center">
-            <button type="button" class="btn btn-link">¿ Olvido su contraseña ?</button>
+            <button type="button" class="btn btn-secondary" id="btn-google">Inicia Sesión con Google</button>
+            <p class="mb-0 mt-3">No tiene una cuenta, registrate <a [routerLink]="[ '/register']">aquí</a></p>
           </div>
         </div>
       </div>

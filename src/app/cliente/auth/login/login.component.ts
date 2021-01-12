@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 @Component({
@@ -8,6 +8,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
+  public hide:boolean = true;
+  // @ViewChild('input[type=password]') input: ElementRef;
   public loginForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
@@ -29,14 +31,15 @@ export class LoginComponent implements OnInit {
     e.preventDefault();
     if(this.loginForm.valid){
       console.log(this.loginForm.value);
+      this.loginForm.reset();
     } else {
       this.loginForm.markAllAsTouched();
     }
-    // this.onResetForm();
   }
 
-  private onResetForm(): void{
-    this.loginForm.reset();
+  public toggleType(e: Event): void {
+    e.preventDefault();
+    this.hide = !this.hide;
   }
 
   // Solo para mostrar errores
