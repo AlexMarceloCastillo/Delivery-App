@@ -7,14 +7,13 @@
             Inicio de Sesión
           </div>
           <div class="card-body">
-            <form [formGroup]="loginForm" [ngClass]="{'was-validated': this.loginForm.valid}" novalidate
-              (ngSubmit)='onSaveLogin($event)'>
+            <form [formGroup]="loginForm" [ngClass]="{'was-validated': this.loginForm.valid}" novalidate (ngSubmit)='onSaveLogin($event)'>
               <div class="form-row">
                 <div class="form-group col-12">
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="basic-addon1">
-                        <i class="bi bi-person-fill"></i>
+                        <i class="bi bi-envelope-fill"></i>
                       </span>
                     </div>
                     <input type="email" class="form-control" placeholder="ejemplo@email.com" name="email"
@@ -44,7 +43,6 @@
                     <input class="form-control" placeholder="contraseña" name="pwd" formControlName="pwd" [type]="hide? 'password':'text'">
                     <div class="input-group-append">
                       <button class="btn btn-outline-secondary" type="button" (click)="toggleType($event)">
-                        <!-- <i [ngClass]="{'bi bi-eye-slash-fill': false, 'bi bi-eye-fill': true}"></i> -->
                         <i [ngClass]="{'bi bi-eye-slash-fill': (hide == true),'bi bi-eye-fill':(hide == false)}"></i>
                       </button>
                     </div>
