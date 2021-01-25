@@ -1,0 +1,53 @@
+div.carousel#mobile {
+
+//   >ol.arousel-indicators {
+//     margin-top: 25% !important;
+//   }
+
+  div.carousel-inner {
+    div.card {
+      width: 80%;
+      margin: 10%;
+
+      div.card-body>button.btn {
+        width: 95%;
+        margin: 2.5%;
+      }
+    }
+  }
+}
+// div.carousel#desktop {
+//     display: none;
+// }
+
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+//   div.carousel#desktop {
+//     display:  block !important;
+//   }
+//   div.carousel#mobile {
+//     display: none !important;
+//   }
+
+  div.carousel-inner {
+    div.card {
+      width: 80%;
+      margin: 10%;
+
+      div.card-body.actions {
+        display: flex;
+
+        button.btn {
+          width: 50% !important;
+        }
+      }
+    }
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {}

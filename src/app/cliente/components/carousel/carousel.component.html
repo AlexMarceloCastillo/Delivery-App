@@ -1,0 +1,86 @@
+<!-- {{widthFormat}} -->
+<ng-container *ngIf="( widthFormat >= 390); else desktop">
+  <div id="carouselIndicators" class="carousel slide" data-ride="carousel" id="mobile">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselIndicators" data-slide-to="2"></li>
+      <li data-target="#carouselIndicators" data-slide-to="3"></li>
+      <li data-target="#carouselIndicators" data-slide-to="4"></li>
+      <li data-target="#carouselIndicators" data-slide-to="5"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item" *ngFor="let card of cards" [ngClass]="{'active': (card.name == 'food 01')}">
+        <div class="row">
+
+          <div class="col-12">
+            <div class="card">
+              <img [src]="card.img" class="card-img-top" alt="food img desc">
+              <div class="card-body">
+                <h5 class="card-title">{{card.name}}</h5>
+                <p>Price: {{card.price}}$</p>
+              </div>
+              <div class="card-body actions">
+                <button class="btn btn-light">Ver</button>
+                <button class="btn btn-light"><i class="bi bi-cart-plus-fill"></i></button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-template #desktop>
+  <div id="carouselIndicators" class="carousel slide" data-ride="carousel" id="desktop">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselIndicators" data-slide-to="1"></li>
+    </ol>
+    <div class="carousel-inner">
+
+      <div class="carousel-inner" id="desktop">
+        <div class="carousel-item active">
+          <div class="row">
+
+            <div class="col-md-4" *ngFor="let card of cardItemA">
+              <div class="card">
+                <img [src]="card.img" class="card-img-top" alt="food img desc">
+                <div class="card-body">
+                  <h5 class="card-title">{{card.name}}</h5>
+                  <p>Price: {{card.price}}$</p>
+                </div>
+                <div class="card-body actions">
+                  <button class="btn btn-light">Ver</button>
+                  <button class="btn btn-light"><i class="bi bi-cart-plus-fill"></i></button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="carousel-item ">
+          <div class="row">
+
+            <div class="col-md-4" *ngFor="let card of cardItemB">
+              <div class="card">
+                <img [src]="card.img" class="card-img-top" alt="food img desc">
+                <div class="card-body">
+                  <h5 class="card-title">{{card.name}}</h5>
+                  <p>Price: {{card.price}}$</p>
+                </div>
+                <div class="card-body actions">
+                  <button class="btn btn-light">Ver</button>
+                  <button class="btn btn-light"><i class="bi bi-cart-plus-fill"></i></button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
