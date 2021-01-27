@@ -1,5 +1,5 @@
-import { Component, ElementRef, OnChanges, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { BehaviorSubject, fromEvent, Observable, Subscription } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { fromEvent, Observable, Subscription } from 'rxjs';
 // import ResizeObserver from 'resize-observer-polyfill';
 
 @Component({
@@ -7,9 +7,10 @@ import { BehaviorSubject, fromEvent, Observable, Subscription } from 'rxjs';
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss']
 })
-export class CarouselComponent implements OnInit,OnDestroy,OnChanges {
+export class CarouselComponent implements OnInit,OnDestroy {
 
-  public widthFormat = 320;
+  // public widthFormat = 320;
+  public widthFormat:number;
 
   private resizeObservable$: Observable<Event>;
   public resizeSubscription$: Subscription;
@@ -50,20 +51,24 @@ export class CarouselComponent implements OnInit,OnDestroy,OnChanges {
   cardItemA: any[];
   cardItemB: any[];
 
-  constructor() { }
-  ngOnChanges(): void {
-    
+  constructor() { 
+    // console.log(window.innerWidth);
+    if (window.innerWidth >= 320 && window.innerWidth <=1024) {
+      this.widthFormat = window.innerWidth;
+    } else {
+      this.widthFormat = window.innerWidth;
+    }
   }
   
   ngOnInit(): void {
     [ this.cardItemA , this.cardItemB ] = this.splitArray(this.cards);
-    
+
     this.resizeObservable$ = fromEvent(window,'resize')
     this.resizeSubscription$ = this.resizeObservable$.subscribe(evt => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment     
       // @ts-ignore
-      // console.log(evt.currentTarget.screen.width)
       this.widthFormat = evt.currentTarget.screen.width;
+      // console.log(this.widthFormat);
     });
   }
 
