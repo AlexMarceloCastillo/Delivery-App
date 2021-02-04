@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/cliente/auth/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -14,31 +15,36 @@ export class RegisterComponent implements OnInit {
   public registerForm: FormGroup;
 
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,private authSvc: AuthService) {
     this.buildRegisterForm();
   }
 
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
   }
 
-  
+
   private buildRegisterForm() {
     this.registerForm = this.formBuilder.group({
       username: ['', [Validators.required,Validators.maxLength(12)]],
       email: ['',[Validators.required, Validators.email]],
-      pwd: ['',[Validators.required]] //password
+      pwd: ['',[Validators.required,Validators.minLength(6)]] //password
     });
   }
 
   public onSaveRegister(e: Event): void {
     e.preventDefault();
     if(this.registerForm.valid){
-      console.log(this.registerForm.value);
+      const {email,pwd,username} = this.registerForm.value;
+      this.authSvc.register(email,pwd,username);
       this.registerForm.reset();
     } else {
       this.registerForm.markAllAsTouched();
     }
+  }
+
+  public GoogleLogin(){
+    this.authSvc.loginGoogle();
   }
 
   public toggleType(e: Event): void {

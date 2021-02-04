@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,14 +14,14 @@ export class LoginComponent implements OnInit {
   // @ViewChild('input[type=password]') input: ElementRef;
   public loginForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,private authSvc: AuthService) {
     this.buildLoginForm();
   }
 
   private buildLoginForm() {
     this.loginForm = this.formBuilder.group({
       email: ['',[Validators.required, Validators.email]],
-      pwd: ['',[Validators.required]], //password
+      pwd: ['',[Validators.required,Validators.minLength(6)]], //password
       remember: [true]
     });
   }
@@ -31,12 +32,18 @@ export class LoginComponent implements OnInit {
   onSaveLogin(e: Event): void {
     e.preventDefault();
     if(this.loginForm.valid){
-      console.log(this.loginForm.value);
+      const {email,pwd} = this.loginForm.value;
+      this.authSvc.login(email,pwd)
       this.loginForm.reset();
     } else {
       this.loginForm.markAllAsTouched();
     }
   }
+
+  public GoogleLogin(){
+    this.authSvc.loginGoogle();
+  }
+
 
   public toggleType(e: Event): void {
     e.preventDefault();

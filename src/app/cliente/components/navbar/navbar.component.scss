@@ -12,7 +12,11 @@ div#desktop {
     a.navbar-brand{
         display: none;
     }
+    .dropdown-menu>a{
+      cursor: pointer;
+    }
 }
+
 
 // // Small devices (landscape phones, 576px and up)
 // @media (min-width: 576px) { }
@@ -22,7 +26,7 @@ div#desktop {
  }
 
 // Large devices (desktops, 992px and up)
-@media (min-width: 992px) { 
+@media (min-width: 992px) {
     div#mobile {
         // border: 1px solid purple;
         display: none;

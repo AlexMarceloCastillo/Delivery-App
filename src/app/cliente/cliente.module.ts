@@ -18,10 +18,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
-
-
+/*Auth */
+import { AuthService } from 'src/app/cliente/auth/auth.service';
 @NgModule({
-  declarations: [ 
+  declarations: [
     ClienteComponent,
     HomeComponent,
     MenuComponent,
@@ -38,6 +38,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     CommonModule,
     ClienteRoutingModule,
     ReactiveFormsModule
-  ]
+  ],
+  providers:[AuthService]
 })
 export class ClienteModule { }

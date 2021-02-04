@@ -5,19 +5,19 @@
     </button>
   </div>
   <div class="list-group list-group-flush">
-    <a class="list-group-item list-group-item-action bg-light" [routerLink]="[ '/home']">Home</a>
-    <a class="list-group-item list-group-item-action bg-light" [routerLink]="[ '/menu']">Menu</a>
-    <a class="list-group-item list-group-item-action bg-light" [routerLink]="[ '/login']">Login</a>
-    <a class="list-group-item list-group-item-action bg-light" [routerLink]="[ '/cart']">Carrito</a>
-    <div class="dropdown">
+    <a class="list-group-item list-group-item-action bg-light" [routerLink]="[ '/home']" (click)="onToggle($event)">Home</a>
+    <a class="list-group-item list-group-item-action bg-light" [routerLink]="[ '/menu']" (click)="onToggle($event)">Menu</a>
+    <a class="list-group-item list-group-item-action bg-light" [routerLink]="[ '/login']" *ngIf="!cliente" (click)="onToggle($event)">Login</a>
+    <a class="list-group-item list-group-item-action bg-light" [routerLink]="[ '/cart']" *ngIf="cliente" (click)="onToggle($event)">Carrito</a>
+    <div class="dropdown" *ngIf="cliente">
       <button class="btn btn-liht dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        user.name
+        {{cliente.nombre}}
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" [routerLink]="[ '/perfil/id']">Perfil</a>
+        <a class="dropdown-item" [routerLink]="[ '/perfil/id']" (click)="onToggle($event)">Perfil</a>
         <a class="dropdown-item" href="#">Mis pedidos</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Cerrar Sesión</a>
+        <a class="dropdown-item" href="#" (click)="logOut()">Cerrar Sesión</a>
       </div>
     </div>
   </div>
