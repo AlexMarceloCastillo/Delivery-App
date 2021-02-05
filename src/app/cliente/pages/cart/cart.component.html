@@ -3,7 +3,7 @@
     <div class="col-12 col-md-7 col-lg-8">
 
       <div class="wrap-cart mb-5">
-        <ng-container *ngFor="let item of items">
+        <ng-container *ngFor="let item of itemsCart$">
 
           <div class="card shadow-sm">
             <img [src]="item.img" loading="lazy">
@@ -13,20 +13,20 @@
             </div>
             <div class="card-body">
               <div class="wrap-button">
-                <button class="btn btn-outline-dark">
+                <button class="btn btn-outline-dark" (click)="plus(item,$event)">
                   <i class="bi bi-plus"></i>
                 </button>
-                <input type="text" value='1' class="form-control">
-                <button class="btn btn-outline-dark">
+                <input type="text" value='{{item.cant}}' class="form-control">
+                <button class="btn btn-outline-dark" (click)="minus(item,$event)">
                   <i class="bi bi-dash"></i>
                 </button>
               </div>
             </div>
             <div class="card-body">
-              <button class="btn btn-danger btn-block" id="mobile">
+              <button class="btn btn-danger btn-block" id="mobile" (click)="deleteItemCart(item.id,$event)">
                 Quitar del carrito
               </button>
-              <button type="button" class="close" aria-label="Close">
+              <button type="button" class="close" aria-label="Close" (click)="deleteItemCart(item.id,$event)">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -46,7 +46,7 @@
           <div class="form-row">
             <div class="form-group col-12">
               <label for="subTotal">Subtotal:</label>
-              <input type="text" class="form-control-plaintext" id="subTotal" value="1 $" readonly>
+              <input type="text" class="form-control-plaintext" id="subTotal" value="{{subTotal}}" readonly>
             </div>
             <div class="form-group col-12">
               <label for="envio">Envio:</label>

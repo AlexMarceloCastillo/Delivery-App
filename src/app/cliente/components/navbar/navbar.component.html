@@ -19,7 +19,9 @@
                 <a class="nav-link" [routerLink]="[ '/login' ] " routerLinkActive="active" *ngIf="!cliente">Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="[ '/cart' ] " routerLinkActive="active" *ngIf="cliente"><i class="bi bi-cart"></i></a>
+                <a class="nav-link" [routerLink]="[ '/cart' ] " routerLinkActive="active" *ngIf="cliente">
+                    <i class="bi bi-cart"></i><span class="badge badge-light">{{cartLength}}</span>
+                </a>
             </li>
             <li class="nav-item dropdown" *ngIf="cliente">
                 <a class="nav-link dropdown-toggle" id="perfilDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

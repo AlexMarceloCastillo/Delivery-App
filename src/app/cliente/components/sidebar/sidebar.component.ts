@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { TogglerService } from "../../services/toggler.service";
+import { TogglerService } from "../../services/toggler/toggler.service";
 import { AuthService } from '../../auth/auth.service';
 import { ClienteInterface } from 'src/app/modelos/cliente';
 
