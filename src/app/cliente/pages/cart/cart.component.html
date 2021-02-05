@@ -1,1 +1,93 @@
-<p>cart works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-7 col-lg-8">
+
+      <div class="wrap-cart mb-5">
+        <ng-container *ngFor="let item of items">
+
+          <div class="card shadow-sm">
+            <img [src]="item.img" loading="lazy">
+            <div class="card-body">
+              <h5 class="card-title">{{item.name}}</h5>
+              <p>Price: {{item.price}} $</p>
+            </div>
+            <div class="card-body">
+              <div class="wrap-button">
+                <button class="btn btn-outline-dark">
+                  <i class="bi bi-plus"></i>
+                </button>
+                <input type="text" value='1' class="form-control">
+                <button class="btn btn-outline-dark">
+                  <i class="bi bi-dash"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <button class="btn btn-danger btn-block" id="mobile">
+                Quitar del carrito
+              </button>
+              <button type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+
+          <hr class="my-5">
+        </ng-container>
+      </div>
+
+    </div>
+    <div class="col-12 col-md-5 col-lg-4">
+      <div class="card sumary">
+        <div class="card-body">
+          <h4 class="card-title text-center">Orden</h4>
+          <hr>
+          <!-- <form action=""> -->
+          <div class="form-row">
+            <div class="form-group col-12">
+              <label for="subTotal">Subtotal:</label>
+              <input type="text" class="form-control-plaintext" id="subTotal" value="1 $" readonly>
+            </div>
+            <div class="form-group col-12">
+              <label for="envio">Envio:</label>
+              <select class="form-control" id="envio">
+                <option>Retiro en el local</option>
+                <option>Delivery</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-6 col-md-6">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <label class="form-check-label" for="gridCheck">Efectivo</label>
+              </div>
+            </div>
+            <div class="form-group col-6 col-md-6">
+              <div class="form-check col-6 col-md-6">
+                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <label class="form-check-label" for="gridCheck"> Debito/Credito </label>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="form-row">
+            <div class="form-group col-12">
+              <label for="desc">Descuento:</label>
+              <input type="text" class="form-control-plaintext" id="desc" value="-100 $" readonly>
+            </div>
+            <div class="form-group col-12">
+              <label for="total">Total:</label>
+              <input type="text" class="form-control-plaintext" id="total" value="100 $" readonly>
+            </div>
+            <div class="form-group col-12">
+              <button type="submit" class="btn btn-outline-primary btn-block">Ordenar</button>
+            </div>
+          </div>
+          <!-- </form> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
