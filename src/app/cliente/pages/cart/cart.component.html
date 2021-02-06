@@ -1,93 +1,107 @@
 <div class="container">
-  <div class="row">
-    <div class="col-12 col-md-7 col-lg-8">
+  <ng-container *ngIf="itemsCart.length; else emptyCart">
 
-      <div class="wrap-cart mb-5">
-        <ng-container *ngFor="let item of itemsCart$">
-
-          <div class="card shadow-sm">
-            <img [src]="item.img" loading="lazy">
-            <div class="card-body">
-              <h5 class="card-title">{{item.name}}</h5>
-              <p>Price: {{item.price}} $</p>
-            </div>
-            <div class="card-body">
-              <div class="wrap-button">
-                <button class="btn btn-outline-dark" (click)="plus(item,$event)">
-                  <i class="bi bi-plus"></i>
+    <div class="row">
+      <div class="col-12 col-md-7 col-lg-8">
+  
+        <div class="wrap-cart mb-5">
+          <ng-container *ngFor="let item of itemsCart">
+  
+            <div class="card shadow-sm">
+              <img [src]="item.img" loading="lazy">
+              <div class="card-body">
+                <h5 class="card-title">{{item.name}}</h5>
+                <p>Price: {{item.price}} $</p>
+              </div>
+              <div class="card-body">
+                <div class="wrap-button">
+                  <button class="btn btn-outline-dark" (click)="plus(item,$event)">
+                    <i class="bi bi-plus"></i>
+                  </button>
+                  <input type="text" value='{{item.cant}}' class="form-control">
+                  <button class="btn btn-outline-dark" (click)="minus(item,$event)">
+                    <i class="bi bi-dash"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <button class="btn btn-danger btn-block" id="mobile" (click)="deleteItemCart(item.id,$event)">
+                  Quitar del carrito
                 </button>
-                <input type="text" value='{{item.cant}}' class="form-control">
-                <button class="btn btn-outline-dark" (click)="minus(item,$event)">
-                  <i class="bi bi-dash"></i>
+                <button type="button" class="close" aria-label="Close" (click)="deleteItemCart(item.id,$event)">
+                  <span aria-hidden="true">&times;</span>
                 </button>
               </div>
             </div>
-            <div class="card-body">
-              <button class="btn btn-danger btn-block" id="mobile" (click)="deleteItemCart(item.id,$event)">
-                Quitar del carrito
-              </button>
-              <button type="button" class="close" aria-label="Close" (click)="deleteItemCart(item.id,$event)">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-          </div>
-
-          <hr class="my-5">
-        </ng-container>
+  
+            <hr class="my-5">
+          </ng-container>
+        </div>
+  
       </div>
-
-    </div>
-    <div class="col-12 col-md-5 col-lg-4">
-      <div class="card sumary">
-        <div class="card-body">
-          <h4 class="card-title text-center">Orden</h4>
-          <hr>
-          <!-- <form action=""> -->
-          <div class="form-row">
-            <div class="form-group col-12">
-              <label for="subTotal">Subtotal:</label>
-              <input type="text" class="form-control-plaintext" id="subTotal" value="{{subTotal}}" readonly>
-            </div>
-            <div class="form-group col-12">
-              <label for="envio">Envio:</label>
-              <select class="form-control" id="envio">
-                <option>Retiro en el local</option>
-                <option>Delivery</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group col-6 col-md-6">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">Efectivo</label>
+      <div class="col-12 col-md-5 col-lg-4">
+        <div class="card sumary">
+          <div class="card-body">
+            <h4 class="card-title text-center">Orden</h4>
+            <hr>
+            <!-- <form action=""> -->
+            <div class="form-row">
+              <div class="form-group col-12">
+                <label for="subTotal">Subtotal:</label>
+                <input type="text" class="form-control-plaintext" id="subTotal" value="{{subTotal}}" readonly>
+              </div>
+              <div class="form-group col-12">
+                <label for="envio">Envio:</label>
+                <select class="form-control" id="envio">
+                  <option>Retiro en el local</option>
+                  <option>Delivery</option>
+                </select>
               </div>
             </div>
-            <div class="form-group col-6 col-md-6">
-              <div class="form-check col-6 col-md-6">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck"> Debito/Credito </label>
+  
+            <div class="form-row">
+              <div class="form-group col-6 col-md-6">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="gridCheck">
+                  <label class="form-check-label" for="gridCheck">Efectivo</label>
+                </div>
+              </div>
+              <div class="form-group col-6 col-md-6">
+                <div class="form-check col-6 col-md-6">
+                  <input class="form-check-input" type="checkbox" id="gridCheck">
+                  <label class="form-check-label" for="gridCheck"> Debito/Credito </label>
+                </div>
               </div>
             </div>
+            <hr>
+            <div class="form-row">
+              <div class="form-group col-12">
+                <label for="desc">Descuento:</label>
+                <input type="text" class="form-control-plaintext" id="desc" value="-100 $" readonly>
+              </div>
+              <div class="form-group col-12">
+                <label for="total">Total:</label>
+                <input type="text" class="form-control-plaintext" id="total" value="100 $" readonly>
+              </div>
+              <div class="form-group col-12">
+                <button type="submit" class="btn btn-outline-primary btn-block">Ordenar</button>
+              </div>
+            </div>
+            <!-- </form> -->
           </div>
-          <hr>
-          <div class="form-row">
-            <div class="form-group col-12">
-              <label for="desc">Descuento:</label>
-              <input type="text" class="form-control-plaintext" id="desc" value="-100 $" readonly>
-            </div>
-            <div class="form-group col-12">
-              <label for="total">Total:</label>
-              <input type="text" class="form-control-plaintext" id="total" value="100 $" readonly>
-            </div>
-            <div class="form-group col-12">
-              <button type="submit" class="btn btn-outline-primary btn-block">Ordenar</button>
-            </div>
-          </div>
-          <!-- </form> -->
         </div>
       </div>
     </div>
-  </div>
+  
+  </ng-container>
+  <ng-template #emptyCart>
+    <div class="row">
+      <div class="col-12 text-center">
+        <img src="../../../../assets/img/web/undraw_empty_cart_co35.svg" alt="Empty Cart img" id="emptyCart" class="img-fluid">
+        <h1 class="mt-4 mb-1">Carrito vacio :(</h1>
+        <h4  class="text-muted ">Agrega algo al carrito</h4>
+      </div>
+    </div>
+  </ng-template>
 </div>
+

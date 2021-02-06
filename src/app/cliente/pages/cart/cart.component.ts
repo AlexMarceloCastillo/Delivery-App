@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 
 import { ItemCart } from 'src/app/modelos/ItemCart';
 import { CartService } from "../../services/cart/cart.service";
@@ -10,23 +9,32 @@ import { CartService } from "../../services/cart/cart.service";
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
+
   public total:number;
   public subTotal:number;
-  public itemsCart$: ItemCart[];
+  public itemsCart: ItemCart[];
+  public sessionCart: ItemCart[];
 
   constructor( private cartSvc:CartService ) { }
 
+
   ngOnInit(): void {
     this.cartSvc.cart$.subscribe( cart => {
-      this.itemsCart$ = cart;
-      this.subTotal = cart.reduce( (sum, current) => sum + (current.price*current.cant),0);
+      try {
+        this.itemsCart = cart;
+        this.subTotal = cart.reduce( (sum, current) => sum + (current.price*current.cant),0);
+      } catch (error) {
+        this.subTotal = 0;
+      }
     });
+    this.sessionCart = JSON.parse(sessionStorage.getItem('cart'));
   }
+
 
   /**
    * Elimina un item del carrito permanentemente
-   * @param id 
-   * @param e Event
+   * @param id: Id de un elemento
+   * @param e: Event
    */
   public deleteItemCart(id: any,e:Event) {
     e.preventDefault();
@@ -35,7 +43,8 @@ export class CartComponent implements OnInit {
 
   /**
    * Aumenta la cantidad de un item en el carrito
-   * @param e Evento
+   * @param item: ItemCart
+   * @param e: Event
    */
   public plus(item:ItemCart,e:Event): void{
     e.preventDefault();
@@ -45,7 +54,8 @@ export class CartComponent implements OnInit {
 
   /**
    * Disminuye la cantidad de un item en el carrito
-   * @param e Evento
+   * @param item: ItemCart
+   * @param e: Event
    */
   public minus(item:ItemCart,e:Event): void{
     e.preventDefault();

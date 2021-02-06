@@ -25,7 +25,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.cartSuscription = this.cartSvc.cart$.subscribe( cart => {
-      this.cartLength = cart.reduce((sum,current)=> sum + current.cant,0)
+      try {
+        this.cartLength = cart.reduce((sum,current)=> sum + current.cant,0);
+      } catch (error) {
+        this.cartLength = 0;
+      }
     });
   }
 
@@ -41,7 +45,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   //Desloguearse
-  logOut(){
+  public logOut(): void{
+    this.cartSvc.deleteCart();
     this.authSvc.logOut();
   }
 }

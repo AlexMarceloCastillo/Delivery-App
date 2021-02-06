@@ -51,7 +51,10 @@ div.sumary {
     }
   }
 }
-
+img.img-fluid#emptyCart{
+  max-width: 70% !important;
+  margin: 1% 15%;
+}
 // // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {}
 

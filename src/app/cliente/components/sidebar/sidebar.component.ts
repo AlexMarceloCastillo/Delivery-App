@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { TogglerService } from "../../services/toggler/toggler.service";
 import { AuthService } from '../../auth/auth.service';
 import { ClienteInterface } from 'src/app/modelos/cliente';
+import { CartService } from '../../services/cart/cart.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,7 +14,7 @@ export class SidebarComponent implements OnInit {
 
   public cliente: ClienteInterface;
 
-  constructor( private togglerService: TogglerService, private authSvc: AuthService ) {
+  constructor( private togglerService: TogglerService, private authSvc: AuthService, private cartSvc: CartService ) {
     this.authSvc.getDataClient().subscribe((data)=>{
       this.cliente = data;
     })
@@ -34,6 +35,7 @@ export class SidebarComponent implements OnInit {
 
   //Desloguearse
   logOut(){
+    this.cartSvc.deleteCart();
     this.authSvc.logOut();
   }
 }

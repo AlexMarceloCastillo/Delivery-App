@@ -3,17 +3,13 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import firebase from 'firebase/app';
-
 //Modelo
 import { ClienteInterface } from 'src/app/modelos/cliente';
-
 //Router
 import { Router } from '@angular/router';
-
 //Rxjs
 import { of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-
 //Toast
 import { ToastrService } from 'ngx-toastr';
 
@@ -22,9 +18,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AuthService {
 
-
-  constructor(public afsAuth: AngularFireAuth,private afs: AngularFirestore,private router: Router,private toastrSvc: ToastrService) {
-  }
+  constructor(public afsAuth: AngularFireAuth,private afs: AngularFirestore,private router: Router,private toastrSvc: ToastrService) { }
 
   //Login
   async login(email: string, pwd: string): Promise<ClienteInterface>{
