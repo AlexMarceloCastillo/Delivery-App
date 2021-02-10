@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ItemCart } from 'src/app/modelos/ItemCart';
+import { CartService } from '../../services/cart/cart.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +9,60 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  public foods:any[] = [
+    {
+      id:'001',
+      name:"food 01",
+      img: "https://place-hold.it/500x300",
+      price:100,
+    },
+    {
+      id:'002',
+      name:"food 02",
+      img: "https://place-hold.it/500x300",
+      price:250
+    },
+    {
+      id:'003',
+      name:"food 03",
+      img: "https://place-hold.it/500x300",
+      price:300
+    },
+    {
+      id:'004',
+      name:"food 04",
+      img: "https://place-hold.it/500x300",
+      price:145
+    },
+    {
+      id:'005',
+      name:"food 05",
+      img: "https://place-hold.it/500x300",
+      price:400
+    },
+    {
+      id:'006',
+      name:"food 06",
+      img: "https://place-hold.it/500x300",
+      price:350
+    }
+  ];
+
+  constructor(private cartSvc: CartService) { }
 
   ngOnInit(): void {
   }
 
+  public addItemCart(item: any, e: Event): void {
+    e.preventDefault();
+    let cartItem: ItemCart = {
+      id: item.id,
+      name: item.name,
+      img: item.img,
+      price: item.price,
+      cant: 1
+    }
+    this.cartSvc.addItem(cartItem);
+    e.stopPropagation();
+  }
 }
