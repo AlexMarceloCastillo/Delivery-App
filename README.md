@@ -3,7 +3,7 @@
 Este proyecto de git contiene el desarrollo completo del frontend de la aplicacion.
 
 ## Tecnologías
-* Angular ( v10.0.7 )
+* Angular CLI ( v11.1.4 )
 * Bootstrap ( v4.5.3 )
 
 ## Equipo
