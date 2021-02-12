@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="row">
+    <div class="col col-md-8 col-lg-6">
+      <div id="login-wrap" class="shadow rounded">
+        <div class="card">
+          <div class="card-header text-center">
+            Inicio de Sesión
+          </div>
+          <div class="card-body">
+            <form [formGroup]="loginForm" [ngClass]="{'was-validated': this.loginForm.valid}" novalidate (ngSubmit)='onSaveLogin($event)'>
+              <div class="form-row">
+                <div class="form-group col-12">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">
+                        <i class="bi bi-envelope-fill"></i>
+                      </span>
+                    </div>
+                    <input type="email" class="form-control" placeholder="ejemplo@email.com" name="email"
+                      formControlName="email">
+                  </div>
+                </div>
+                <!-- respuesta de validacion del email -->
+                <div class="form-group col-12 mb-0" *ngIf="email.errors && email.touched">
+                  <p *ngIf="email.hasError('required')" [ngClass]="{'error': email.hasError('required')}">
+                    Es un campo requerido
+                  </p>
+                  <p *ngIf="email.hasError('email')" [ngClass]="{'error': email.hasError('email')}">
+                    Debe ser un email valido
+                  </p>
+                </div>
+                <!-- / respuesta de validacion del email / -->
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-12">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="bi bi-lock-fill"></i>
+                      </span>
+                    </div>
+                    <input class="form-control" placeholder="contraseña" name="pwd" formControlName="pwd" [type]="hide? 'password':'text'">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" type="button" (click)="toggleType($event)">
+                        <i [ngClass]="{'bi bi-eye-slash-fill': (hide == true),'bi bi-eye-fill':(hide == false)}"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <!-- respuesta de validacion del pwd -->
+                <div class="form-group col-12 mb-0" *ngIf="pwd.errors && pwd.touched">
+                  <p *ngIf="pwd.hasError('required')" [ngClass]="{'error': pwd.hasError('required')}">
+                    Es un campo requerido
+                  </p>
+                </div>
+                <!-- / respuesta de validacion del pwd / -->
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck" name="remember"
+                      formControlName="remember">
+                    <label class="form-check-label" for="gridCheck">
+                      Recordarme
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-12" id="btn-submit">
+                  <button class="btn btn-primary" [disabled]="loginForm.invalid">Iniciar Sesión</button>
+                  <button type="button" class="btn btn-link">¿Olvido su contraseña?</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="card-footer text-center">
+            <button type="button" class="btn btn-secondary" id="btn-google" (click)="GoogleLogin()">Inicia Sesión con Google</button>
+            <p class="mb-0 mt-3">No tiene una cuenta, registrate <a [routerLink]="[ '/register']">aquí</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

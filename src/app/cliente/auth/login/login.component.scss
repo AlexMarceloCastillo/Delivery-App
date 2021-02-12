@@ -1,0 +1,62 @@
+div.container {
+  margin: 30% auto;
+
+  div.col {
+    margin: auto;
+  }
+
+  div#login-wrap {
+    border: 1px solid rgba(0, 0, 0, 0.01);
+    background-image: url('../../../../assets/img/web/hexagon.png');
+    background-position: center;
+    background-size: 15%;
+
+    div.card {
+      margin: 5% !important;
+
+      p.error {
+        color: #dc3545; //danger color from Bootstrap
+        padding: 0px 5px;
+        margin: none;
+      }
+
+      div.form-group#btn-submit {
+        display: flex;
+        flex-flow: column wrap;
+      }
+
+      div.card-footer button#btn-google {
+        background-color: #DB4437;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  div.container {
+    margin: 20% auto;
+  }
+
+  div.card div.form-group#btn-submit {
+    flex-flow: row wrap !important;
+    justify-content: space-between;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  div.container {
+    margin: 15% auto;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  div.container {
+    margin: 7% auto;
+
+    div#login-wrap div.card {
+      margin: 10% !important;
+    }
+  }
+}

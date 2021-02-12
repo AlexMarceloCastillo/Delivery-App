@@ -1,0 +1,76 @@
+div.container-fluid {
+  // height: 100vh;
+
+  // background-image: linear-gradient(to right bottom, #ffffff, #f6f6f6, #eeeeee, #e5e5e5, #dddddd);
+
+  section.search {
+    width: 100%;
+    height: 30vh;
+
+    background-image: url("../../../../assets/img/web/pizza_home.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    border-radius: 5px;
+
+    div.search-wrap {
+      width: 80%;
+      margin-bottom: 10%;
+      position: relative;
+
+      opacity: 95%;
+
+
+      input.input-search {
+        width: 100%;
+        height: 5vh;
+        border-radius: 20px;
+        display: block;
+        border: none;
+        background-color: whitesmoke;
+      }
+
+      button.btn {
+        position: absolute;
+        top: 0px;
+        right: 1px;
+        border-radius: 20px;
+      }
+    }
+  }
+}
+
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  section.search {
+    height: 50vh !important;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  section.search {
+    height: 60vh !important;
+
+    div.search-wrap {
+      width: 60% !important;
+      margin-bottom: 5% !important;
+    }
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  section.search {
+    height: 70vh !important;
+
+    div.search-wrap>input.input-search {
+      height: 4.5vh !important;
+    }
+  }
+}

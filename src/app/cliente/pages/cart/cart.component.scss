@@ -1,0 +1,109 @@
+div.wrap-cart {
+  div.card {
+    border: none;
+
+    img {
+      width: 500 px;
+      height: 300 px;
+    }
+
+    div.wrap-button {
+      display: flex;
+      justify-content: center;
+
+      input.form-control,
+      button.btn {
+        text-align: center;
+        width: 60px;
+      }
+
+      button.btn {
+        border: none !important;
+      }
+
+      button.btn-outline-dark {
+        opacity: 75%;
+      }
+    }
+
+    button.close {
+      visibility: hidden;
+    }
+  }
+
+
+
+  hr:last-child {
+    display: none;
+  }
+}
+
+div.sumary {
+  div.form-group {
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+
+    input.form-control-plaintext,
+    select {
+      margin-left: 5px;
+      border: none;
+    }
+  }
+}
+img.img-fluid#emptyCart{
+  max-width: 70% !important;
+  margin: 1% 15%;
+}
+// // Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  div.wrap-cart {
+
+    div.card {
+      display: flex;
+      flex-direction: row;
+      justify-content: baseline;
+
+      div.card-body {
+        h5 {
+          margin-top: 10px;
+        }
+
+        .wrap-button {
+          margin: 10% auto;
+        }
+      }
+
+      div.card-body:last-child {
+        display: flex;
+        align-content: center;
+        justify-content: baseline;
+      }
+
+      img {
+        display: block;
+        width: 75px;
+        height: 75px;
+        margin: 3% 2.5%;
+        border-radius: 5px;
+      }
+
+      button.close {
+        visibility: visible;
+      }
+
+      button#mobile {
+        display: none;
+      }
+    }
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {}

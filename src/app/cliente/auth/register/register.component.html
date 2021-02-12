@@ -1,0 +1,99 @@
+<div class="container">
+  <div class="row">
+    <div class="col col-md-8 col-lg-6">
+      <div id="register-wrap" class="shadow rounded">
+        <div class="card">
+          <div class="card-header text-center">
+            Registro
+          </div>
+          <div class="card-body">
+            <form [formGroup]="registerForm" [ngClass]="{'was-validated': this.registerForm.valid}" novalidate
+              (ngSubmit)='onSaveRegister($event)'>
+              <div class="form-row">
+                <div class="form-group col-12">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="bi bi-person-fill"></i>
+                      </span>
+                    </div>
+                    <input type="text|" class="form-control" placeholder="nombre de usuario" name="username"
+                      formControlName="username">
+                  </div>
+                </div>
+                <!-- respuesta de validacion del username -->
+                <div class="form-group col-12 mb-0" *ngIf="name.errors && name.touched">
+                  <p *ngIf="name.errors.required" [ngClass]="{'error': name.errors.required}">
+                    Es un campo requerido
+                  </p>
+                  <p *ngIf="name.errors.maxlength" [ngClass]="{'error': name.errors.maxlength}">
+                    El nombre debe ser menor a 16 caracteres
+                  </p>
+                </div>
+                <!-- / respuesta de validacion del username / -->
+              </div>
+              <div class="form-row">
+                <div class="form-group col-12">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="bi bi-envelope-fill"></i>
+                      </span>
+                    </div>
+                    <input type="email" class="form-control" placeholder="ejemplo@email.com" name="email"
+                      formControlName="email">
+                  </div>
+                </div>
+                <!-- respuesta de validacion del email -->
+                <div class="form-group col-12 mb-0" *ngIf="email.errors && email.touched">
+                  <p *ngIf="email.errors.required" [ngClass]="{'error': email.errors.required}">
+                    Es un campo requerido
+                  </p>
+                  <p *ngIf="email.errors.email" [ngClass]="{'error': email.errors.email}">
+                    Debe ser un email valido
+                  </p>
+                </div>
+                <!-- / respuesta de validacion del email / -->
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-12">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="bi bi-lock-fill"></i>
+                      </span>
+                    </div>
+                    <input class="form-control" placeholder="contraseña" name="pwd" formControlName="pwd"
+                      [type]="hide? 'password':'text'">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" type="button" (click)="toggleType($event)">
+                        <i [ngClass]="{'bi bi-eye-slash-fill': (hide == true),'bi bi-eye-fill':(hide == false)}"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <!-- respuesta de validacion del pwd -->
+                <div class="form-group col-12 mb-0" *ngIf="pwd.errors && pwd.touched">
+                  <p *ngIf="pwd.errors.required" [ngClass]="{'error': pwd.errors.required}">
+                    Es un campo requerido
+                  </p>
+                </div>
+                <!-- / respuesta de validacion del pwd / -->
+              </div>
+              <div class="form-row">
+                <div class="form-group col-12">
+                  <button class="btn btn-primary btn-block" [disabled]="registerForm.invalid">Registrarse</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="card-footer text-center">
+            <button type="button" class="btn btn-secondary" id="btn-google" (click)="GoogleLogin()">Inicia Sesión con Google</button>
+            <p class="mb-0 mt-3">Ya tienes una cuenta, inicia sesión <a [routerLink]="[ '/login']">aquí</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

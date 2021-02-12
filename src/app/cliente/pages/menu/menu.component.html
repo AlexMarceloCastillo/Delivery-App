@@ -1,0 +1,149 @@
+<!-- <div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-md-2 col-lg-3 mb-5">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+              <h5 class="card-title">Filter Data</h5>
+            </div>
+            <div class="card-body">
+                <div id="form">
+                    <div class="form-row">
+                        <div class="form-group col-12">
+                            <input type="search" name="" id="" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-12 col-md-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="gridCheck">
+                                <label class="form-check-label" for="gridCheck">
+                                  Check me out
+                                </label>
+                              </div>
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="gridCheck">
+                                <label class="form-check-label" for="gridCheck">
+                                  Check me out
+                                </label>
+                              </div>
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="gridCheck">
+                                <label class="form-check-label" for="gridCheck">
+                                  Check me out
+                                </label>
+                              </div>
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="gridCheck">
+                                <label class="form-check-label" for="gridCheck">
+                                  Check me out
+                                </label>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+    </div>
+    <div class="col-12 col-md-10 col-lg-9">
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-4" *ngFor="let food of foods">
+
+          <div class="card mb-4">
+            <img  [src]="food.img" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">{{food.name}}</h5>
+              <p class="card-text">{{food.price}}</p>
+            </div>
+            <div class="card-body actions">
+                <button class="btn btn-light">Ver</button>
+                <button class="btn btn-light" (click)="addItemCart(food,$event)"><i class="bi bi-cart-plus-fill"></i></button>
+              </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div id="form">
+        <div class="form-row">
+          <div class="form-group col-12">
+            <input type="search" name="value" id="seacrhInput" class="form-control" placeholder="Comida">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <!-- Filter Data -->
+    <div class="col-12 col-md-3 col-lg-3">
+      <div class="card shadow-sm border-0">
+        <div class="card-body">
+          <h5 class="card-title">Filter Data</h5>
+        </div>
+        <div class="card-body">
+          <div id="form">
+            <div class="form-row">
+              <div class="form-group col-12 col-md-12 col-lg-6">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="gridCheck">
+                  <label class="form-check-label" for="gridCheck"> Pizza </label>
+                </div>
+              </div>
+              <div class="form-group col-12 col-md-12 col-lg-6">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="gridCheck">
+                  <label class="form-check-label" for="gridCheck"> Hamburguesas </label>
+                </div>
+              </div>
+              <div class="form-group col-12 col-md-12 col-lg-6">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="gridCheck">
+                  <label class="form-check-label" for="gridCheck"> bebidas </label>
+                </div>
+              </div>
+              <div class="form-group col-12 col-md-12 col-lg-6">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="gridCheck">
+                  <label class="form-check-label" for="gridCheck"> Empandas </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Products -->
+    <div class="col-12 col-md-9 col-lg-9">
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-4" *ngFor="let food of foods">
+
+          <div class="card mb-4">
+            <img [src]="food.img" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">{{food.name}}</h5>
+              <p class="card-text">{{food.price}}</p>
+            </div>
+            <div class="card-body actions">
+              <button class="btn btn-light">Ver</button>
+              <button class="btn btn-light" (click)="addItemCart(food,$event)"><i
+                  class="bi bi-cart-plus-fill"></i></button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<app-footer></app-footer>
