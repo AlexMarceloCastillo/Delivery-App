@@ -1,9 +1,15 @@
-export interface ClienteInterface{
-  uid: string;
+import { Usuario } from "./usuario.interface";
+
+
+export interface Cliente extends Usuario{
   nombre ?: string;
   apellido ?: string;
   telefono ?: number;
-  email: string;
   photoURL ?: string;
-  acceso ?: number;
+  domicilio ?: Domicilio;
+}
+
+export interface Domicilio {
+  num: number,
+  dir: string
 }

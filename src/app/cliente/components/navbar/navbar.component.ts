@@ -2,7 +2,7 @@ import { Component, OnChanges, OnDestroy, OnInit } from '@angular/core';
 
 import { TogglerService } from '../../services/toggler/toggler.service';
 import { AuthService } from '../../auth/auth.service';
-import { ClienteInterface } from 'src/app/modelos/cliente';
+import { Cliente } from 'src/app/modelos/cliente';
 import { CartService } from '../../services/cart/cart.service';
 import { Subscription } from 'rxjs';
 
@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
 export class NavbarComponent implements OnInit, OnDestroy {
   public cartLength: number = 0;
   private cartSuscription: Subscription;
-  public cliente: ClienteInterface;
+  public cliente: Cliente;
 
   constructor( private togglerService: TogglerService, private authSvc: AuthService, private cartSvc: CartService ) {
     this.authSvc.getDataClient().subscribe((data)=>{
@@ -38,7 +38,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.cartSuscription.unsubscribe();
   }
 
-  
+
   public onToggle(e: Event): void {
     this.togglerService.toggle(true);
     e.preventDefault();

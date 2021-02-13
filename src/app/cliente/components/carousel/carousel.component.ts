@@ -3,6 +3,7 @@ import { fromEvent, Observable, Subscription } from 'rxjs';
 
 import { CartService } from '../../services/cart/cart.service';
 import { ItemCart } from "../../../modelos/ItemCart";
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-carousel',
@@ -13,6 +14,8 @@ export class CarouselComponent implements OnInit,OnDestroy {
 
   // public widthFormat = 320;
   public widthFormat:number;
+
+  public btnCart: boolean = true;
 
   private resizeObservable$: Observable<Event>;
   public resizeSubscription$: Subscription;
@@ -59,20 +62,29 @@ export class CarouselComponent implements OnInit,OnDestroy {
   cardItemA: any[];
   cardItemB: any[];
 
-  constructor( private cartSvc:CartService ) { 
+  constructor( private cartSvc:CartService, private authSvc: AuthService ) {
     if (window.innerWidth >= 320 && window.innerWidth <=1024) {
       this.widthFormat = window.innerWidth;
     } else {
       this.widthFormat = window.innerWidth;
     }
+    this.authSvc.isAuth().subscribe((data)=>{
+      if(data){
+        this.btnCart = false;
+      } else{
+        this.btnCart = true
+      }
+    })
+
+    console.log(this.btnCart)
   }
-  
+
   ngOnInit(): void {
     [ this.cardItemA , this.cardItemB ] = this.splitArray(this.cards);
 
     this.resizeObservable$ = fromEvent(window,'resize')
     this.resizeSubscription$ = this.resizeObservable$.subscribe(evt => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment     
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       this.widthFormat = evt.currentTarget.screen.width;
     });
@@ -83,9 +95,9 @@ export class CarouselComponent implements OnInit,OnDestroy {
   }
 
   /**
-   * Agrega productos al carritos
-   * @param item 
-   */
+  * Agrega productos al carritos
+  * @param item
+  */
   public addItemCart(item: any,e:Event) {
     e.preventDefault();
     let cartItem: ItemCart = {
@@ -99,10 +111,10 @@ export class CarouselComponent implements OnInit,OnDestroy {
   }
 
   /**
-   * Metodo que divide un array en dos
-   * (Sujeto a modificaciones)
-   * @param array 
-   */
+  * Metodo que divide un array en dos
+  * (Sujeto a modificaciones)
+  * @param array
+  */
   private splitArray(array:any[]):any[] {
     let half = Math.ceil(array.length / 2);
     let aux = [...this.cards]

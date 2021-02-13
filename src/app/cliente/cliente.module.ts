@@ -20,6 +20,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 /*Auth */
 import { AuthService } from 'src/app/cliente/auth/auth.service';
+import { AuthGuard } from '../guards/auth.guard';
+import { AdminGuard } from '../guards/admin.guard';
 @NgModule({
   declarations: [
     ClienteComponent,
@@ -39,6 +41,6 @@ import { AuthService } from 'src/app/cliente/auth/auth.service';
     ClienteRoutingModule,
     ReactiveFormsModule
   ],
-  providers:[AuthService]
+  providers:[AuthService,AuthGuard]
 })
 export class ClienteModule { }

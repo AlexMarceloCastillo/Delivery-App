@@ -4,7 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import firebase from 'firebase/app';
 //Modelo
-import { ClienteInterface } from 'src/app/modelos/cliente';
+import { Cliente } from 'src/app/modelos/cliente';
 //Router
 import { Router } from '@angular/router';
 //Rxjs
@@ -18,18 +18,19 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AuthService {
 
-  constructor(public afsAuth: AngularFireAuth,private afs: AngularFirestore,private router: Router,private toastrSvc: ToastrService) { }
+  constructor(public afsAuth: AngularFireAuth,private afs: AngularFirestore,public router: Router,public toastrSvc: ToastrService) { }
 
   //Login
-  async login(email: string, pwd: string): Promise<ClienteInterface>{
+  async login(email: string, pwd: string): Promise<Cliente>{
     try{
       const {user} = await this.afsAuth.signInWithEmailAndPassword(email,pwd);
       this.toastrSvc.success('Logueado Correctamente','',{
         positionClass: 'toast-center-center',
+        timeOut: 800
       })
       setTimeout(()=>{
         this.redirect()
-      },1500)
+      },1000)
       return user;
     }catch(error){
       this.getError(error.code,'Error al loguearse')
@@ -37,16 +38,17 @@ export class AuthService {
   }
 
   //GoogleLogin
-  async loginGoogle(): Promise<ClienteInterface>{
+  async loginGoogle(): Promise<Cliente>{
     try{
       const {user} = await this.afsAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
       this.updateClienteData(user,user.displayName)
       this.toastrSvc.success('Logueado Correctamente','',{
         positionClass: 'toast-center-center',
+        timeOut: 800
       })
       setTimeout(()=>{
         this.redirect()
-      },1500)
+      },1000)
       return user;
     }catch(error){
       this.getError(error.code,'Error al loguearse con Google')
@@ -54,16 +56,17 @@ export class AuthService {
   }
 
   //Register
-  async register(email: string, pwd: string,username: string): Promise<ClienteInterface>{
+  async register(email: string, pwd: string,username: string): Promise<Cliente>{
     try{
       const {user} = await this.afsAuth.createUserWithEmailAndPassword(email,pwd);
       this.updateClienteData(user,username);
       this.toastrSvc.success('Registrado Correctamente','',{
         positionClass: 'toast-center-center',
+        timeOut: 800
       })
       setTimeout(()=>{
         this.redirect()
-      },1500)
+      },1000)
       return user;
     }
     catch(error){
@@ -86,7 +89,7 @@ export class AuthService {
     return this.afsAuth.authState.pipe(
       switchMap((data)=>{
         if(data){
-          return this.afs.doc<ClienteInterface>(`/clients/${data.uid}`).valueChanges();
+          return this.afs.doc<Cliente>(`/clients/${data.uid}`).valueChanges();
         }
         //Si no existe es nulo
         return of(null)
@@ -101,12 +104,12 @@ export class AuthService {
   //Guardar el cliente en una coleccion de Firestore
   private updateClienteData(cliente: any,username: string){
     //Referencia de usuario a guardar
-    const userRef: AngularFirestoreDocument<ClienteInterface> = this.afs.doc(`clients/${cliente.uid}`);
-    const data: ClienteInterface = {
+    const userRef: AngularFirestoreDocument<Cliente> = this.afs.doc(`clients/${cliente.uid}`);
+    const data: Cliente = {
       uid: cliente.uid,
       email: cliente.email,
       nombre: username,
-      acceso: 2,
+      role: 0,
       photoURL: cliente.photoURL
     }
     return userRef.set(data, {merge: true});
