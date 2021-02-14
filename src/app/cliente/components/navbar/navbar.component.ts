@@ -1,9 +1,11 @@
-import { Component, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { TogglerService } from '../../services/toggler/toggler.service';
-import { AuthService } from '../../auth/auth.service';
-import { Cliente } from 'src/app/modelos/cliente';
+import { AuthService } from '../../../core/auth/services/auth.service';
 import { CartService } from '../../services/cart/cart.service';
+
+import { Cliente } from 'src/app/core/modelos/cliente.interface';
+
 import { Subscription } from 'rxjs';
 
 @Component({

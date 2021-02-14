@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
-//Firebase
+
 import { AngularFireAuth } from '@angular/fire/auth';
-import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import firebase from 'firebase/app';
-//Modelo
-import { Cliente } from 'src/app/modelos/cliente';
-//Router
+
+import { Cliente } from 'src/app/core/modelos/cliente.interface';
+
 import { Router } from '@angular/router';
-//Rxjs
 import { of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-//Toast
+
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
@@ -23,16 +22,17 @@ export class AuthService {
   //Login
   async login(email: string, pwd: string): Promise<Cliente>{
     try{
-      const {user} = await this.afsAuth.signInWithEmailAndPassword(email,pwd);
+      const { user } = await this.afsAuth.signInWithEmailAndPassword(email,pwd);
       this.toastrSvc.success('Logueado Correctamente','',{
         positionClass: 'toast-center-center',
         timeOut: 800
       })
       setTimeout(()=>{
         this.redirect()
-      },1000)
+      },1000);
+      console.log(user)
       return user;
-    }catch(error){
+    } catch(error) {
       this.getError(error.code,'Error al loguearse')
     }
   }
@@ -41,14 +41,16 @@ export class AuthService {
   async loginGoogle(): Promise<Cliente>{
     try{
       const {user} = await this.afsAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-      this.updateClienteData(user,user.displayName)
+
+      this.updateClienteData(user,user.displayName);
+
       this.toastrSvc.success('Logueado Correctamente','',{
         positionClass: 'toast-center-center',
         timeOut: 800
       })
       setTimeout(()=>{
         this.redirect()
-      },1000)
+      },1000);
       return user;
     }catch(error){
       this.getError(error.code,'Error al loguearse con Google')
@@ -133,7 +135,4 @@ export class AuthService {
       positionClass: 'toast-center-center',
     })
   }
-
-
-
 }

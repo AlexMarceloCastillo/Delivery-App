@@ -19,9 +19,9 @@ import { CartComponent } from './pages/cart/cart.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 /*Auth */
-import { AuthService } from 'src/app/cliente/auth/auth.service';
-import { AuthGuard } from '../guards/auth.guard';
-import { AdminGuard } from '../guards/admin.guard';
+import { AuthService } from '../core/auth/services/auth.service';
+import { AuthGuard } from '../core/auth/guards/auth.guard';
+
 @NgModule({
   declarations: [
     ClienteComponent,
@@ -41,6 +41,6 @@ import { AdminGuard } from '../guards/admin.guard';
     ClienteRoutingModule,
     ReactiveFormsModule
   ],
-  providers:[AuthService,AuthGuard]
+  providers:[ AuthService, AuthGuard ]
 })
 export class ClienteModule { }

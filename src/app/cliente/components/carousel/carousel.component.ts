@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { fromEvent, Observable, Subscription } from 'rxjs';
 
 import { CartService } from '../../services/cart/cart.service';
-import { ItemCart } from "../../../modelos/ItemCart";
-import { AuthService } from '../../auth/auth.service';
+import { ItemCart } from "../../../core/modelos/ItemCart.interface";
+import { AuthService } from '../../../core/auth/services/auth.service';
 
 @Component({
   selector: 'app-carousel',

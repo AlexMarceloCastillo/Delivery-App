@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { Observable, pipe } from 'rxjs';
+
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+
+import { Observable } from 'rxjs';
 import { map, take, tap } from 'rxjs/operators';
-import { AuthService } from '../cliente/auth/auth.service';
+
+import { AuthService } from '../services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private authSvc: AuthService){
-
-  }
+  constructor(private authSvc: AuthService){ }
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -29,7 +29,6 @@ export class AuthGuard implements CanActivate {
         this.authSvc.router.navigate(['/login'])
       }
     })
-    )
+    );
   }
-
 }
