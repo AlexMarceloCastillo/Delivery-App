@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import { ItemCart } from "../../../core/modelos/ItemCart.interface";
-import { AuthService } from '../../../core/auth/services/auth.service';
+import { ItemCart } from "@core/modelos/ItemCart.interface";
+import { AuthService } from '@auth/services/auth.service';
 
 @Injectable({
   providedIn: 'root'

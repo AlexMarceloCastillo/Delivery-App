@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from '../core/auth/guards/auth.guard';
+
+import { AuthGuard } from '@auth/guards/auth.guard';
 
 import { LoginComponent } from './auth/login/login.component';
 import { PerfilComponent } from './auth/perfil/perfil.component';
 import { RegisterComponent } from './auth/register/register.component';
+
 import { CartComponent } from './pages/cart/cart.component';
 
 import { HomeComponent } from './pages/home/home.component';

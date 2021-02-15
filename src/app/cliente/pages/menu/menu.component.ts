@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ItemCart } from 'src/app/core/modelos/ItemCart.interface';
+
 import { CartService } from '../../services/cart/cart.service';
+
+import { ItemCart } from '@core/modelos/itemCart.interface';
 
 @Component({
   selector: 'app-menu',

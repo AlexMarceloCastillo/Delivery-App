@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
+import { AuthService } from '@auth/services/auth.service';
 import { TogglerService } from '../../services/toggler/toggler.service';
-import { AuthService } from '../../../core/auth/services/auth.service';
 import { CartService } from '../../services/cart/cart.service';
 
-import { Cliente } from 'src/app/core/modelos/cliente.interface';
-
 import { Subscription } from 'rxjs';
+
+import { Cliente } from '@core/modelos/cliente.interface';
 
 @Component({
   selector: 'app-navbar',
@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit, OnDestroy {
+  
   public cartLength: number = 0;
   private cartSuscription: Subscription;
   public cliente: Cliente;

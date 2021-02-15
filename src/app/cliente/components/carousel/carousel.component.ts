@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { fromEvent, Observable, Subscription } from 'rxjs';
 
 import { CartService } from '../../services/cart/cart.service';
-import { ItemCart } from "../../../core/modelos/ItemCart.interface";
-import { AuthService } from '../../../core/auth/services/auth.service';
+import { ItemCart } from "@core/modelos/ItemCart.interface";
+import { AuthService } from '@auth/services/auth.service';
 
 @Component({
   selector: 'app-carousel',
@@ -12,7 +12,6 @@ import { AuthService } from '../../../core/auth/services/auth.service';
 })
 export class CarouselComponent implements OnInit,OnDestroy {
 
-  // public widthFormat = 320;
   public widthFormat:number;
 
   public btnCart: boolean = true;
@@ -74,9 +73,7 @@ export class CarouselComponent implements OnInit,OnDestroy {
       } else{
         this.btnCart = true
       }
-    })
-
-    console.log(this.btnCart)
+    });
   }
 
   ngOnInit(): void {
@@ -98,7 +95,7 @@ export class CarouselComponent implements OnInit,OnDestroy {
   * Agrega productos al carritos
   * @param item
   */
-  public addItemCart(item: any,e:Event) {
+  public addItemCart(item: any,e: Event) {
     e.preventDefault();
     let cartItem: ItemCart = {
       id: item.id,
@@ -115,7 +112,7 @@ export class CarouselComponent implements OnInit,OnDestroy {
   * (Sujeto a modificaciones)
   * @param array
   */
-  private splitArray(array:any[]):any[] {
+  private splitArray(array: any[]): any[] {
     let half = Math.ceil(array.length / 2);
     let aux = [...this.cards]
     let arrayA = aux.splice(0,half);
