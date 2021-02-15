@@ -14,9 +14,14 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ReactiveFormsModule } from "@angular/forms";
+
+// @core: Pages
+import { P404Component } from '@core/pages/p404/p404.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    P404Component
   ],
   imports: [
     BrowserModule,
