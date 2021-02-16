@@ -21,6 +21,8 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 /*Auth */
 import { AuthService } from '../core/auth/services/auth.service';
 import { AuthGuard } from '../core/auth/guards/auth.guard';
+import { ListOrderComponent } from './pages/list-order/list-order.component';
+import { OrderComponent } from './pages/order/order.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { AuthGuard } from '../core/auth/guards/auth.guard';
     PerfilComponent,
     CartComponent,
     SidebarComponent,
-    CarouselComponent
+    CarouselComponent,
+    ListOrderComponent,
+    OrderComponent
   ],
   imports: [
     CommonModule,

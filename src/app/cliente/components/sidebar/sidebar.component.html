@@ -14,8 +14,8 @@
         {{cliente.nombre}}
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" [routerLink]="[ '/perfil/id']" (click)="onToggle($event)">Perfil</a>
-        <a class="dropdown-item" href="#">Mis pedidos</a>
+        <a class="dropdown-item" [routerLink]="[ '/perfil/', cliente.uid ] " (click)="onToggle($event)">Perfil</a>
+        <a class="dropdown-item" [routerLink]="[ '/perfil/', cliente.uid, 'mis-pedidos' ] " (click)="onToggle($event)">Mis pedidos</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="#" (click)="logOut()">Cerrar Sesión</a>
       </div>

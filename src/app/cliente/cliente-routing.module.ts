@@ -12,14 +12,18 @@ import { CartComponent } from './pages/cart/cart.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MenuComponent } from './pages/menu/menu.component';
 
+import { ListOrderComponent } from "./pages/list-order/list-order.component";
+import { OrderComponent } from "./pages/order/order.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'menu', component: MenuComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'perfil/:id', component: PerfilComponent,canActivate:[AuthGuard] },
-  { path: 'cart', component: CartComponent,canActivate:[AuthGuard] },
+  { path: 'perfil/:id', component: PerfilComponent, canActivate:[AuthGuard] },
+  { path: 'cart', component: CartComponent, canActivate:[AuthGuard] },
+  { path: 'perfil/:id/mis-pedidos', component: ListOrderComponent, canActivate:[AuthGuard] },
+  { path: 'perfil/:id/pedido/:id', component: OrderComponent, canActivate:[AuthGuard] },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
