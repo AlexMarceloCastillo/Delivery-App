@@ -1,76 +1,130 @@
 <div class="container">
   <div class="row" id="perfil-wrap">
-
-    <div class="col-12 col-lg-4 mb-4">
+  <form class="col-12 col-lg-4 mb-4" [formGroup]="updateForm" (ngSubmit)="onUpdateProfile()">
       <div class="card border-light shadow">
-        <img src="https://www.w3schools.com/howto/img_avatar.png" class="card-img-top">
+        <img *ngIf="this.cliente.photoURL == null" src="https://www.w3schools.com/howto/img_avatar.png" class="card-img-top">
+        <img *ngIf="this.cliente.photoURL != null" src="{{this.cliente.photoURL}}" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">Perfil</h5>
           <div> <!-- form -->
             <div class="form-row">
               <div class="form-group col-12">
-                <input type="text" class="form-control" placeholder="user.name">
+                <input type="text" class="form-control" formControlName="nombre">
+                <div class="alert-danger mr-auto ml-auto" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                  <div class="container-error-message" *ngIf="nombre.errors.required">
+                    El nombre es requerido
+                  </div>
+                  <div class="container-error-message"
+                  *ngIf="(nombre.dirty || nombre.touched) && nombre.invalid && nombre.errors.maxlength">
+                  El nombre tiene un maximo de 18 caracteres
+                </div>
+              </div>
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-12">
-                <input type="text" class="form-control" placeholder="user.email">
+                <input type="text" class="form-control" formControlName="email">
+                <div class="alert-danger mr-auto ml-auto" *ngIf="email.invalid && (email.dirty || email.touched)">
+                  <div class="container-error-message" *ngIf="email.errors.required">
+                    El email es requerido
+                  </div>
+                  <div class="container-error-message"
+                  *ngIf="(email.dirty || email.touched) && email.invalid && email.errors.pattern">
+                    La direccion del email debe ser valida
+                </div>
+              </div>
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-12">
                 <div class="custom-file">
-                  <input type="file" class="custom-file-input">
+                  <input type="file" class="custom-file-input" accept="image/*" (change)="onFile($event)">
                   <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                  [style.width]="(uploadPercent | async) + '%'"></div>
                 </div>
               </div>
             </div>
           </div>
         </div><!-- form -->
       </div>
-    </div>
-
+  </form>
     <div class="col-12 col-lg-8">
       <div class="row">
-        <div class="col-12 mb-4">
+        <form class="col-12 mb-4" [formGroup]="updateForm" (ngSubmit)="onUpdateProfile()">
           <div class="card border-light shadow">
             <div class="card-body">
               <h5 class="card-title">Domicilio</h5>
               <div><!-- form -->
                 <div class="form-row">
                   <div class="form-group col-12">
-                    <input type="text" class="form-control" placeholder="user.name">
+                    <input type="text" class="form-control" formControlName="direccion">
+                    <div class="alert-danger mr-auto ml-auto" *ngIf="direccion.invalid && (direccion.dirty || direccion.touched)">
+                      <div class="container-error-message" *ngIf="direccion.errors.required">
+                        La direccion es requerida
+                      </div>
+                  </div>
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-12">
-                    <input type="text" class="form-control" placeholder="user.email">
+                    <input type="number" class="form-control" formControlName="numero">
+                    <div class="alert-danger mr-auto ml-auto" *ngIf="numero.invalid && (numero.dirty || numero.touched)">
+                      <div class="container-error-message" *ngIf="numero.errors.required">
+                        El numero es requerido
+                      </div>
+                      <div class="container-error-message" *ngIf="numero.errors.min">
+                        El numero de domicilio tiene un minimo de 1
+                      </div>
+                      <div class="container-error-message" *ngIf="numero.errors.max">
+                        El numero de domicilio tiene un maximo de 9999
+                      </div>
+                  </div>
                   </div>
                 </div>
               </div><!-- form -->
             </div>
           </div>
-        </div>
-
-        <div class="col-12">
+        <button class="btn btn-primary btn-block" type="submit" name="button" [disabled]="updateForm.invalid">Actualizar Datos</button>
+        </form>
+        <form *ngIf="!isGoogle" class="col-12" [formGroup]="passwordForm" (ngSubmit)="onUpdatePassword()">
             <div class="card border-light shadow">
                 <div class="card-body">
                     <h5 class="card-title">Cambiar contraseña</h5>
                     <div><!-- form -->
                         <div class="form-row">
                             <div class="form-group col-12">
-                            <input type="text" class="form-control" placeholder="Contraseña">
+                            <input type="password" class="form-control" placeholder="Contraseña Nueva" formControlName="pwd">
+                            <div class="alert-danger mr-auto ml-auto" *ngIf="pwd.invalid && (pwd.dirty || pwd.touched)">
+                              <div class="container-error-message" *ngIf="pwd.errors.required">
+                                La contraseña es requerida
+                              </div>
+                              <div class="container-error-message" *ngIf="pwd.errors.minLength">
+                                La contraseña tiene un minimo de 6 caracteres
+                              </div>
+                          </div>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-12">
-                            <input type="text" class="form-control" placeholder="Contraseña">
+                            <input type="password" class="form-control" placeholder="Repetir Contraseña" formControlName="repwd">
+                            <div class="alert-danger mr-auto ml-auto" *ngIf="repwd.invalid && (repwd.dirty || repwd.touched)">
+                              <div class="container-error-message" *ngIf="repwd.errors.required">
+                                La contraseña es requerida
+                              </div>
+                              <div class="container-error-message" *ngIf="repwd.errors.minLength">
+                                La contraseña tiene un minimo de 6 caracteres
+                              </div>
+                          </div>
                             </div>
                         </div>
                     </div><!-- form -->
                 </div>
             </div>
-        </div>
+            <button class="btn btn-secondary btn-block" type="submit" name="button" [disabled]="passwordForm.invalid">Actualizar Contraseña</button>
+        </form>
       </div> <!-- /row -->
     </div>
 

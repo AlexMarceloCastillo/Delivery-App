@@ -30,7 +30,6 @@ export class AuthService {
       setTimeout(()=>{
         this.redirect()
       },1000);
-      console.log(user)
       return user;
     } catch(error) {
       this.getError(error.code,'Error al loguearse')
@@ -41,9 +40,7 @@ export class AuthService {
   async loginGoogle(): Promise<Cliente>{
     try{
       const {user} = await this.afsAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-
       this.updateClienteData(user,user.displayName);
-
       this.toastrSvc.success('Logueado Correctamente','',{
         positionClass: 'toast-center-center',
         timeOut: 800
@@ -78,8 +75,7 @@ export class AuthService {
 
   //LogOut
   logOut(){
-    this.afsAuth.signOut();
-    this.redirect();
+    this.afsAuth.signOut().then(()=> this.redirect())
   }
 
   //Obtener estado de login
@@ -112,9 +108,28 @@ export class AuthService {
       email: cliente.email,
       nombre: username,
       role: 0,
-      photoURL: cliente.photoURL
+      photoURL: cliente.photoURL,
+      estado: 0
     }
     return userRef.set(data, {merge: true});
+  }
+  //Actualizar datos de usuario en Firestore
+  public updateProfile(cliente: Cliente){
+    const userRef: AngularFirestoreDocument<Cliente> = this.afs.doc(`clients/${cliente.uid}`)
+
+    const data: any = {
+      email: cliente.email,
+      nombre: cliente.nombre,
+      photoURL: cliente.photoURL,
+      domicilio: cliente.domicilio,
+      estado: 1
+    }
+    userRef.update(data)
+    .then(()=> {this.toastrSvc.success('','Datos Actualizados con Exito',{
+    positionClass: 'toast-center-center',
+    timeOut: 800})})
+    .catch((err)=>console.log(err))
+
   }
 
   //Errores de firebase
@@ -123,12 +138,14 @@ export class AuthService {
     'auth/invalid-email',
     'auth/wrong-password',
     'auth/email-already-in-use',
-    'auth/too-many-requests'];
+    'auth/too-many-requests',
+    'auth/requires-recent-login'];
     const message=['Usuario no encontrado',
     'Email invalido',
     'La contraseña es incorrecta',
     'El email ya esta en uso',
-    'El acceso a esta cuenta ha sido temporalmente deshabilitado'];
+    'El acceso a esta cuenta ha sido temporalmente deshabilitado',
+    'Para realizar esta operacion necesita estar logueado recientemente'];
     const index = code.indexOf(ind);
     const mss = message[index];
     this.toastrSvc.error(mss,titulo,{
