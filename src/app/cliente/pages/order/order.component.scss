@@ -1,0 +1,138 @@
+div.step-progress-wrapper> {
+  ul.step-progress {
+    counter-reset: step;
+
+    li.item {
+      list-style-type: none;
+      position: relative;
+
+      &::before {
+        content: counter(step);
+        counter-increment: step;
+
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        border: 1px solid #ddd;
+        display: inline-block;
+        text-align: center;
+        margin: 0 20px 100px 5px;
+
+        border-radius: 50%;
+
+        background-color: white;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        background-color: #ddd;
+        height: 100%;
+        width: 1px;
+
+        z-index: -1;
+
+        top: -100px;
+        left: 25px;
+      }
+
+      &:first-child::after {
+        content: none;
+      }
+
+
+      // Cambio de color segun el estado
+      // Listo
+      &.ready {
+        color: #28a745;
+      }
+
+      &.ready::before {
+        border-color: #28a745;
+      }
+
+      &.ready {
+        + {
+          li {
+            &:after {
+              background-color: #28a745;
+            }
+          }
+        }
+      }
+
+      // wait
+      &.wait {
+        color: #ffc107;
+      }
+
+      &.wait::before {
+        border-color: #ffc107;
+      }
+
+      &.wait {
+        + {
+          li {
+            &:after {
+              background-color: #ffc107;
+            }
+          }
+        }
+      }
+
+      // denage
+      &.denage {
+        color: #dc3545;
+      }
+
+      &.denage::before {
+        border-color: #dc3545;
+      }
+
+      &.denage {
+        + {
+          li {
+            &:after {
+              background-color: #dc3545;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  div.step-progress-wrapper> {
+
+    ul.step-progress {
+      li.item {
+        float: left;
+        width: 33.3%;
+        position: relative;
+
+        &::before {
+          width: 30px;
+          height: 30px;
+          display: block;
+          line-height: 30px;
+          margin: 0 auto 20px 5px;
+        }
+
+        &::after {
+          width: 100%;
+          height: 1px;
+
+          top: 15px;
+          left: -95%;
+        }
+      }
+    }
+  }
+}
+
+// E#ffc107xtra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {}
