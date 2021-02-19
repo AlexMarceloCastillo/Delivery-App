@@ -1,1 +1,28 @@
-<p>list-order works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">N° de pedido</th>
+            <th scope="col">Esatdo</th>
+            <th scope="col">Progreso</th>
+            <th scope="col">Factura</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders">
+            <th>{{order.id}}</th>
+            <td>{{order.estado}}</td>
+            <td>
+                <a [routerLink]="[ '/perfil', userId, 'pedido', order.id ]">ver</a>
+            </td>
+            <td>
+                <button class="btn btn-primary" (click)="imprimir(order.id, $event)">Imprimir</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
