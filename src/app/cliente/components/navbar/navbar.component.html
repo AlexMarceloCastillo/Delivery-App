@@ -31,6 +31,7 @@
                 <div class="dropdown-menu" aria-labelledby="perfilDropdown">
                     <a class="dropdown-item" [routerLink]="[ '/perfil/', cliente.uid ] ">Perfil</a>
                     <a class="dropdown-item" [routerLink]="[ '/perfil/', cliente.uid, 'mis-pedidos' ] ">Mis pedidos</a>
+                    <a class="dropdown-item" [routerLink]="[ '/admin' ] ">dashboard</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" (click)="logOut()">Cerrar Sesión</a>
                 </div>

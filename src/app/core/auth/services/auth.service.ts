@@ -5,6 +5,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import firebase from 'firebase/app';
 
 import { Cliente } from 'src/app/core/modelos/cliente.interface';
+import { Role } from '@core/modelos/role.enum';
 
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
@@ -17,10 +18,10 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AuthService {
 
-  openDelivery: boolean = false;
+  public openDelivery: boolean = false;
 
   constructor(public afsAuth: AngularFireAuth,private afs: AngularFirestore,public router: Router,public toastrSvc: ToastrService) {
-    this.isOpen()
+    this.isOpen();
    }
 
   //Login
@@ -113,7 +114,7 @@ export class AuthService {
       uid: cliente.uid,
       email: cliente.email,
       nombre: username,
-      role: 0,
+      role: Role.Cliente,
       photoURL: cliente.photoURL,
       estado: 0
     }
@@ -131,31 +132,35 @@ export class AuthService {
       estado: 1
     }
     userRef.update(data)
-    .then(()=> {this.toastrSvc.success('','Datos Actualizados con Exito',{
-    positionClass: 'toast-center-center',
-    timeOut: 800})})
-    .catch((err)=>console.log(err))
-
+      .then( () => { 
+          this.toastrSvc.success('','Datos Actualizados con Exito',{
+          positionClass: 'toast-center-center',
+          timeOut: 800})
+        }
+      )
+      .catch( (err) => console.error(err) );
   }
 
   isOpen(){
     const today = new Date();
-    const hoursWeeknd = [20,21,22,23,24]
-    const hoursEndWkd = [11,12,13,14,15]
+    const hoursWeeknd = [11,12,13,14,15,16,17,18,19,20,21,22,23,24];
+    const hoursEndWkd = [11,12,13,14,15];
+
     if(today.getDay() == (6 || 7)){
       for(var e of hoursEndWkd){
         hoursWeeknd.push(e)
       }
     }
+
     var hour = hoursWeeknd.filter((hrs)=>{
       return hrs == today.getHours()
     })
+
     if(hour[0] == null){
       this.isAuth().subscribe((user)=>{
-        if(user){
-          this.logOut()
-        }
-      })
+        if(user)
+          this.logOut();
+      });
       this.openDelivery = false;
     }else{
       this.openDelivery = true;

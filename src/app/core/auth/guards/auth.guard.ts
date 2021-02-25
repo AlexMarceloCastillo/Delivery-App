@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
     .pipe(map(authState => !!authState))
     .pipe(tap(auth => {
       if(!auth){
-        this.authSvc.toastrSvc.error('Necsita loguearse!!','',{
+        this.authSvc.toastrSvc.error('Necesita loguearse!!','',{
           positionClass: 'toast-center-center',
           timeOut: 800
         })
