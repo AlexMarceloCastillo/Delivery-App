@@ -23,7 +23,7 @@
             </div>
             <div class="form-row">
               <div class="form-group col-12">
-                <input type="text" class="form-control" formControlName="email">
+                <input [readonly]="isGoogle" type="text" class="form-control" formControlName="email">
                 <div class="alert-danger mr-auto ml-auto" *ngIf="email.invalid && (email.dirty || email.touched)">
                   <div class="container-error-message" *ngIf="email.errors.required">
                     El email es requerido

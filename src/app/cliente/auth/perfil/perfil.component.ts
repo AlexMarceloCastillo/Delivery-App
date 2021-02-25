@@ -17,6 +17,7 @@ export class PerfilComponent implements OnInit {
   cliente: Cliente = {
     uid: '',
     email: '',
+    photoURL: '',
     domicilio: {
       num: 0,
       dir: ''
@@ -38,21 +39,31 @@ export class PerfilComponent implements OnInit {
     this.buildUpdateForm();
     this.buildPasswordForm();
     this.authSvc.getDataClient().subscribe((user)=>{
-      this.cliente = user;
-      if(user.domicilio != null){
-        this.cliente.domicilio = user.domicilio
+      if(user){
+        this.cliente.uid = user.uid;
+        this.cliente.nombre = user.nombre;
+        this.cliente.email = user.email;
+        this.cliente.photoURL = user.photoURL;
+        if(user.domicilio != null){
+          this.cliente.domicilio = user.domicilio
+        }else{
+          this.cliente.domicilio.dir = ''
+          this.cliente.domicilio.num = 0
+        }
+        this.updateForm.setValue({
+          email: this.cliente.email,
+          nombre: this.cliente.nombre,
+          numero: this.cliente.domicilio.num,
+          direccion: this.cliente.domicilio.dir
+        })
       }
-      this.updateForm.setValue({
-        email: this.cliente.email,
-        nombre: this.cliente.nombre,
-        numero: this.cliente.domicilio.num,
-        direccion: this.cliente.domicilio.dir
-      })
     })
     //Si esta logueado por google no necesita contraseña
     this.authSvc.isAuth().subscribe((user)=>{
-      if(user.providerData[0].providerId == 'google.com'){
-        this.isGoogle = true;
+      if(user){
+        if(user.providerData[0].providerId == 'google.com'){
+          this.isGoogle = true;
+        }
       }
     })
   }

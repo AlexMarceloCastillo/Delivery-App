@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'menu', component: MenuComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'perfil/:id', component: PerfilComponent, canActivate:[AuthGuard] },
+  { path: 'perfil/:id', component: PerfilComponent,canActivate:[AuthGuard]},
   { path: 'cart', component: CartComponent, canActivate:[AuthGuard] },
   { path: 'perfil/:id/mis-pedidos', component: ListOrderComponent, canActivate:[AuthGuard] },
   { path: 'perfil/:id/pedido/:id', component: OrderComponent, canActivate:[AuthGuard] },

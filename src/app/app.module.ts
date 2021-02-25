@@ -18,6 +18,8 @@ import { ReactiveFormsModule } from "@angular/forms";
 // @core: Pages
 import { P404Component } from '@core/pages/p404/p404.component';
 import { ClosedComponent } from '@core/pages/closed/closed.component';
+import { AviableGuard } from '@core/auth/guards/aviable.guard';
+import { ClosedGuard } from '@core/auth/guards/closed.guard';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,7 @@ import { ClosedComponent } from '@core/pages/closed/closed.component';
     ToastrModule.forRoot(),
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [AviableGuard,ClosedGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

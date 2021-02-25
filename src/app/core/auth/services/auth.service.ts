@@ -44,7 +44,9 @@ export class AuthService {
   async loginGoogle(): Promise<Cliente>{
     try{
       const {user} = await this.afsAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-      this.updateClienteData(user,user.displayName);
+      if(!this.getDataClient()){
+        this.updateClienteData(user,user.displayName)
+      }
       this.toastrSvc.success('Logueado Correctamente','',{
         positionClass: 'toast-center-center',
         timeOut: 800
@@ -79,7 +81,7 @@ export class AuthService {
 
   //LogOut
   logOut(){
-    this.afsAuth.signOut().then(()=> this.redirect())
+    this.afsAuth.signOut().then(()=> this.redirect()).catch((e)=> console.log(e));
   }
 
   //Obtener estado de login
