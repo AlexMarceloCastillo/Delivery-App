@@ -13,7 +13,8 @@ nav#sidebar {
     padding: 8px 16px;
     font-size: 1.2rem;
   }
-  div.list-group > div.dropdown {
+
+  div.list-group>div.dropdown {
     display: flex;
     justify-items: center;
     justify-content: flex-start;
@@ -34,6 +35,7 @@ nav#sidebar.active {
   nav#sidebar {
     margin-left: -250px;
   }
+
   nav#sidebar.active {
     margin-left: 0;
   }
@@ -41,11 +43,18 @@ nav#sidebar.active {
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
-  nav#sidebar > div.sidebar-heading {
+  nav#sidebar>div.sidebar-heading {
     height: 82px;
+  }
+
+  nav#sidebar.dash {
+    margin-left: 0;
+  }
+
+  nav#sidebar.dash.active {
+    margin-left: -250px;
   }
 }
 
 // Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {
-}
+@media (min-width: 1200px) {}

@@ -7,7 +7,6 @@ export interface Cliente extends Usuario{
   telefono ?: number;
   photoURL ?: string;
   domicilio ?: Domicilio;
-  estado ?: number;
 }
 
 export interface Domicilio {

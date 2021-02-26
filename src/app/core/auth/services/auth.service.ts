@@ -33,7 +33,7 @@ export class AuthService {
         timeOut: 800
       })
       setTimeout(()=>{
-        this.redirect()
+        this.redirect();
       },1000);
       return user;
     } catch(error) {
@@ -102,8 +102,24 @@ export class AuthService {
     )
   }
 
-  //Redireccionar
-  public redirect(){
+  /**
+   * @param flag Opcional, por defecto se agrega cinco para redirigir unicamente a la ruta `['/home']`
+   */
+  private redirect(flag: number = 5): void{
+    let role: number = flag;
+      this.getDataClient().subscribe( data => {
+        switch (data.role) {
+          case 0:
+            this.router.navigate(['/home']);
+            break;
+          case 4:
+            this.router.navigate(['/admin']);
+            break;
+          default:
+            this.router.navigate(['/home']);
+            break;
+        }
+      }, err => console.error(err) );
     this.router.navigate(['/home']);
   }
   //Guardar el cliente en una coleccion de Firestore

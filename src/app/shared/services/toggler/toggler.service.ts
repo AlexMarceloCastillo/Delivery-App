@@ -6,12 +6,12 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class TogglerService {
 
-  private statusSubject:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public statusSubject:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public status$ = this.statusSubject.asObservable();
 
   constructor() { }
 
-  public toggle(aux:boolean): void{
-    this.statusSubject.next(aux);
+  public toggle(value:boolean): void{
+    this.statusSubject.next(value);
   }
 }

@@ -6,6 +6,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 /*  pages */
 import { UsersComponent } from './pages/users/users.component';
 import { AdminComponent } from './admin.component';
+import { ChartsComponent } from './pages/charts/charts.component';
 /*  Components   */
 
 /*  Guards  */
@@ -17,7 +18,8 @@ import { SharedModule } from '../shared/shared.module';
 @NgModule({
   declarations: [
     UsersComponent,
-    AdminComponent
+    AdminComponent,
+    ChartsComponent
   ],
   imports: [
     SharedModule,

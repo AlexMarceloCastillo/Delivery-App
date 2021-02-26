@@ -1,7 +1,7 @@
 <div class="wrapper">
-  <app-sidebar></app-sidebar>
+  <app-sidebar [isDashboard]="dashboard"></app-sidebar>
   <div id="content">
-    <app-navbar></app-navbar>
+    <app-navbar [isDashboard]="dashboard"></app-navbar>
     <router-outlet></router-outlet>
   </div>
 </div>

@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { TogglerService } from "../../services/toggler/toggler.service";
-import { AuthService } from '../../../core/auth/services/auth.service';
-import { CartService } from '../../services/cart/cart.service';
+import { CartService } from '../../../cliente/services/cart/cart.service';
 
-import { Cliente } from 'src/app/core/modelos/cliente.interface';
+import { AuthService } from '@core/auth/services/auth.service';
+
+import { Cliente } from '@core/modelos/cliente.interface';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,15 +15,18 @@ import { Cliente } from 'src/app/core/modelos/cliente.interface';
 export class SidebarComponent implements OnInit {
 
   public cliente: Cliente;
+  public role: number;
+
+  @Input() isDashboard: boolean;
 
   constructor( private togglerService: TogglerService, private authSvc: AuthService, private cartSvc: CartService ) {
     this.authSvc.getDataClient().subscribe((data)=>{
       this.cliente = data;
-    })
+      this.role  = data.role;
+    }, err => console.error(err));
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   public get toggleStatus() : TogglerService {
     return this.togglerService;
@@ -30,8 +34,7 @@ export class SidebarComponent implements OnInit {
 
   public onToggle(e:Event): void{
     e.preventDefault();
-    this.togglerService.toggle(false);
-    e.stopPropagation();
+    this.togglerService.toggle(!this.togglerService.statusSubject.getValue());
   }
 
   //Desloguearse

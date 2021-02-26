@@ -5,4 +5,6 @@ export interface Usuario{
     uid: string;
     email: string;
     role?: Role;
+
+    estado ?: number;
 }

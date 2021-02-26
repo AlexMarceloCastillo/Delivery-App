@@ -1,8 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 
 import { AuthService } from '@auth/services/auth.service';
 import { TogglerService } from '../../services/toggler/toggler.service';
-import { CartService } from '../../services/cart/cart.service';
+import { CartService } from '../../../cliente/services/cart/cart.service';
 
 import { Subscription } from 'rxjs';
 
@@ -19,10 +19,13 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private cartSuscription: Subscription;
   public cliente: Cliente;
 
+  @Input() isDashboard: boolean;
+  
   constructor( private togglerService: TogglerService, private authSvc: AuthService, private cartSvc: CartService ) {
     this.authSvc.getDataClient().subscribe((data)=>{
       this.cliente = data;
-    })
+    });
+    // console.log(this.cliente);
   }
 
 
@@ -36,15 +39,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
     });
   }
 
-
   ngOnDestroy(): void {
     this.cartSuscription.unsubscribe();
   }
 
 
   public onToggle(e: Event): void {
-    this.togglerService.toggle(true);
     e.preventDefault();
+    this.togglerService.toggle(!this.togglerService.statusSubject.getValue());
   }
 
   //Desloguearse

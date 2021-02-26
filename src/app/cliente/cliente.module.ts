@@ -15,8 +15,6 @@ import { ListOrderComponent } from './pages/list-order/list-order.component';
 import { OrderComponent } from './pages/order/order.component';
 /*  Components   */
 import { FooterComponent } from './components/footer/footer.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 /*Auth */
 import { AuthService } from '../core/auth/services/auth.service';
@@ -30,13 +28,11 @@ import { SharedModule } from '../shared/shared.module';
     ClienteComponent,
     HomeComponent,
     MenuComponent,
-    NavbarComponent,
     FooterComponent,
     LoginComponent,
     RegisterComponent,
     PerfilComponent,
     CartComponent,
-    SidebarComponent,
     CarouselComponent,
     ListOrderComponent,
     OrderComponent

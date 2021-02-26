@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cliente.component.scss']
 })
 export class ClienteComponent implements OnInit {
-
+  public dashboard: boolean = false;
   constructor() { }
 
   ngOnInit(): void {

@@ -5,7 +5,8 @@
     "baseUrl": "./",
     "paths": {
       "@core/*": ["src/app/core/*"],
-      "@auth/*": ["src/app/core/auth/*"]
+      "@auth/*": ["src/app/core/auth/*"],
+      "@shared/*": ["src/app/shared/*"]
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
