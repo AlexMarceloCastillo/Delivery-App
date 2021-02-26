@@ -8,10 +8,8 @@ import { ClosedGuard } from '@core/auth/guards/closed.guard';
 import { ClosedComponent } from '@core/pages/closed/closed.component';
 import { P404Component } from '@core/pages/p404/p404.component';
 
-// modulos
 import { ClienteComponent } from './cliente/cliente.component';
 import { AdminComponent } from './admin/admin.component';
-
 
 const routes: Routes = [
   {

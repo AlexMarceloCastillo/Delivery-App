@@ -2,15 +2,28 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
-import { DashboardComponent } from './components/dashboard.component';
+
+/*  pages */
+import { UsersComponent } from './pages/users/users.component';
 import { AdminComponent } from './admin.component';
+/*  Components   */
+
+/*  Guards  */
+import { AdminGuard } from '@core/auth/guards/admin.guard';
+
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
-  declarations: [DashboardComponent, AdminComponent],
+  declarations: [
+    UsersComponent,
+    AdminComponent
+  ],
   imports: [
+    SharedModule,
     CommonModule,
     AdminRoutingModule
-  ]
+  ],
+  providers: [ AdminGuard ]
 })
 export class AdminModule { }

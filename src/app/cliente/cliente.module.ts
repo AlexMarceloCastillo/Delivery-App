@@ -4,25 +4,26 @@ import { CommonModule } from '@angular/common';
 import { ClienteRoutingModule } from './cliente-routing.module';
 import { ClienteComponent } from './cliente.component';
 
-import { ReactiveFormsModule } from "@angular/forms";
-
 /* Pages */
 import { HomeComponent } from "./pages/home/home.component";
 import { MenuComponent } from './pages/menu/menu.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { PerfilComponent } from './auth/perfil/perfil.component';
+import { CartComponent } from './pages/cart/cart.component';
+import { ListOrderComponent } from './pages/list-order/list-order.component';
+import { OrderComponent } from './pages/order/order.component';
 /*  Components   */
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { CartComponent } from './pages/cart/cart.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 /*Auth */
 import { AuthService } from '../core/auth/services/auth.service';
+/*  Guards  */
 import { AuthGuard } from '../core/auth/guards/auth.guard';
-import { ListOrderComponent } from './pages/list-order/list-order.component';
-import { OrderComponent } from './pages/order/order.component';
+//
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -41,9 +42,9 @@ import { OrderComponent } from './pages/order/order.component';
     OrderComponent
   ],
   imports: [
+    SharedModule,
     CommonModule,
-    ClienteRoutingModule,
-    ReactiveFormsModule
+    ClienteRoutingModule
   ],
   providers:[ AuthService, AuthGuard ]
 })
