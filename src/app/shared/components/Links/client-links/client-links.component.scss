@@ -1,0 +1,16 @@
+div.img-wrap {
+
+  // border: 1px solid black;
+  img {
+    display: block;
+    max-height: 50%;
+    max-width: 50%;
+    margin: 10% 25%;
+  }
+}
+
+div.list-group.list-group-flush {
+    div.dropdown>button {
+      margin-left: 7px;
+    }
+  }

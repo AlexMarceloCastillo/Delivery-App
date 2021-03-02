@@ -18,13 +18,9 @@ export class SidebarComponent implements OnInit {
   public role: number;
 
   @Input() isDashboard: boolean;
+  @Input() isClient: boolean;
 
-  constructor( private togglerService: TogglerService, private authSvc: AuthService, private cartSvc: CartService ) {
-    this.authSvc.getDataClient().subscribe((data)=>{
-      this.cliente = data;
-      this.role  = data.role;
-    }, err => console.error(err));
-  }
+  constructor( private togglerService: TogglerService, private cartSvc: CartService ) { }
 
   ngOnInit(): void { }
 
@@ -35,11 +31,5 @@ export class SidebarComponent implements OnInit {
   public onToggle(e:Event): void{
     e.preventDefault();
     this.togglerService.toggle(!this.togglerService.statusSubject.getValue());
-  }
-
-  //Desloguearse
-  logOut(){
-    this.cartSvc.deleteCart();
-    this.authSvc.logOut();
   }
 }

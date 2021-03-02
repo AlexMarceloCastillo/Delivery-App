@@ -1,52 +1,13 @@
-<nav id="sidebar" class="bg-light border-right" [ngClass]="{'active': this.toggleStatus.status$ | async}"
-  [ngClass]="{'dash': isDashboard}">
+<nav id="sidebar" class="bg-light border-right" [ngClass]="{'active': this.toggleStatus.status$ | async}" [ngClass]="{'dash': isDashboard}">
   <div class="sidebar-heading">
     <button type="button" class="close" aria-label="Close" (click)="onToggle($event)">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <ng-container [ngSwitch]="role">
-    <ng-container *ngSwitchCase="4">
-      <div class="list-group list-group-flush">
-        <a class="list-group-item list-group-item-action bg-light" [routerLink]="[ '/admin']" (click)="onToggle($event)">Panel de administracion</a>
-        <a class="list-group-item list-group-item-action bg-light" [routerLink]="[ '/home']" (click)="onToggle($event)">Home</a>
-        <a class="list-group-item list-group-item-action bg-light" [routerLink]="[ '/admin/users']" (click)="onToggle($event)">Users</a>
-        <div class="dropdown" *ngIf="cliente">
-          <button class="btn btn-liht dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Otras paginas
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" [routerLink]="[ '/menu']" (click)="onToggle($event)">Menu</a>
-            <a class="dropdown-item" [routerLink]="[ '/cart']" *ngIf="cliente" (click)="onToggle($event)">Carrito</a>
-            <a class="dropdown-item" [routerLink]="[ '/perfil/', cliente.uid ] " (click)="onToggle($event)">Perfil</a>
-            <a class="dropdown-item" [routerLink]="[ '/perfil/', cliente.uid, 'mis-pedidos' ] " (click)="onToggle($event)">Mis pedidos</a>
-          </div>
-        </div>
-        <a class="list-group-item list-group-item-action bg-light" href="#" (click)="logOut()">Cerrar Sesión</a>
-      </div>
-    </ng-container>
-    <ng-container *ngSwitchCase="0">
-      <div class="list-group list-group-flush">
-        <a class="list-group-item list-group-item-action bg-light" [routerLink]="[ '/home']" (click)="onToggle($event)">Home</a>
-        <a class="list-group-item list-group-item-action bg-light" [routerLink]="[ '/menu']" (click)="onToggle($event)">Menu</a>
-        <a class="list-group-item list-group-item-action bg-light" [routerLink]="[ '/login']" *ngIf="!cliente" (click)="onToggle($event)">Login</a>
-        <a class="list-group-item list-group-item-action bg-light" [routerLink]="[ '/cart']" *ngIf="cliente" (click)="onToggle($event)">Carrito</a>
-        <div class="dropdown" *ngIf="cliente">
-          <button class="btn btn-liht dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{cliente.nombre}}
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" [routerLink]="[ '/perfil/', cliente.uid ] " (click)="onToggle($event)">Perfil</a>
-            <a class="dropdown-item" [routerLink]="[ '/perfil/', cliente.uid, 'mis-pedidos' ] " (click)="onToggle($event)">Mis pedidos</a>
-            <ng-container *ngIf="cliente.role == 4">
-              <a class="dropdown-item" [routerLink]="['/admin'] ">Panel de administracion</a>
-              <div class="dropdown-divider"></div>
-            </ng-container>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#" (click)="logOut()">Cerrar Sesión</a>
-          </div>
-        </div>
-      </div>
-    </ng-container>
+  <ng-container *ngIf="isClient; else admin">
+    <app-client-links></app-client-links>
   </ng-container>
+  <ng-template #admin>
+    <app-admin-links></app-admin-links>
+  </ng-template>
 </nav>

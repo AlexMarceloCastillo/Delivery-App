@@ -1,0 +1,28 @@
+<ng-container *ngIf="cliente$ | async as cliente">
+  <div class="img-wrap">
+    <ng-container *ngIf="cliente.photoURL != null; else noPhoto">
+      <img src={{cliente.photoURL}} alt="user profile picture" class="rounded-circle" loading="lazy">
+    </ng-container>
+    <ng-template #noPhoto>
+      <img src="https://www.w3schools.com/howto/img_avatar.png"alt="user default picture" class="rounded-circle" loading="lazy">
+    </ng-template>
+  </div>
+  <div class="list-group list-group-flush">
+    <a class="list-group-item list-group-item-action bg-light" [routerLink]="[ '/admin']">Panel de administracion</a>
+    <a class="list-group-item list-group-item-action bg-light" [routerLink]="[ '/home']">Home</a>
+    <a class="list-group-item list-group-item-action bg-light" [routerLink]="[ '/admin/users']">Users</a>
+    <div class="dropdown">
+      <button class="btn btn-liht dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Otras paginas
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" [routerLink]="[ '/menu']">Menu</a>
+        <a class="dropdown-item" [routerLink]="[ '/cart']">Carrito</a>
+        <a class="dropdown-item" [routerLink]="[ '/perfil/', cliente.uid ] ">Perfil</a>
+        <a class="dropdown-item" [routerLink]="[ '/perfil/', cliente.uid, 'mis-pedidos' ]">Mis pedidos</a>
+      </div>
+    </div>
+    <a class="list-group-item list-group-item-action bg-light" href="#" (click)="onLogout()">Cerrar Sesión</a>
+  </div>
+</ng-container>

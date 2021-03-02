@@ -1,0 +1,30 @@
+<ng-container *ngIf="cliente$ | async as cliente">
+  <div class="img-wrap">
+    <ng-container *ngIf="cliente.photoURL != null; else noPhoto">
+      <img src={{cliente.photoURL}} alt="user profile picture" class="rounded-circle" loading="lazy">
+    </ng-container>
+    <ng-template #noPhoto>
+      <img src="https://www.w3schools.com/howto/img_avatar.png"alt="user default picture" class="rounded-circle" loading="lazy">
+    </ng-template>
+  </div>
+  <div class="list-group list-group-flush">
+    <a class="list-group-item list-group-item-action bg-light" [routerLink]="[ '/home']" (click)="onToggle($event)">Home</a>
+    <a class="list-group-item list-group-item-action bg-light" [routerLink]="[ '/menu']" (click)="onToggle($event)">Menu</a>
+    <a class="list-group-item list-group-item-action bg-light" [routerLink]="[ '/cart']" *ngIf="cliente" (click)="onToggle($event)">Carrito</a>
+    <a class="list-group-item list-group-item-action bg-light" [routerLink]="[ '/login']" *ngIf="!cliente" (click)="onToggle($event)">Login</a>
+    <div class="dropdown" *ngIf="cliente">
+      <button class="btn btn-liht dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{cliente.nombre}}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" [routerLink]="[ '/perfil/', cliente.uid ] " (click)="onToggle($event)">Perfil</a>
+        <a class="dropdown-item" [routerLink]="[ '/perfil/', cliente.uid, 'mis-pedidos' ] " (click)="onToggle($event)">Mis pedidos</a>
+        <ng-container *ngIf="cliente.role == 4">
+          <a class="dropdown-item" [routerLink]="['/admin'] ">Panel de administracion</a>
+        </ng-container>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#" (click)="logOut()">Cerrar Sesión</a>
+      </div>
+    </div>
+  </div>
+</ng-container>
